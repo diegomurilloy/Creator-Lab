@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="440" viewBox="0 0 1280 440" role="img" aria-label="Creator Lab: tu equipo de contenido dentro de Claude Code">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B0F14"/><stop offset="1" stop-color="#121A24"/>
+    </linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#1C2633" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1280" height="440" fill="url(#bg)"/>
+  <rect width="1280" height="440" fill="url(#grid)" opacity=".6"/>
+  <text x="72" y="96" font-family="ui-monospace,Consolas,monospace" font-size="16" letter-spacing="3" fill="#33CCFF">SKILL PARA CLAUDE CODE</text>
+  <text x="68" y="196" font-family="'Bricolage Grotesque','Arial Black',Arial,sans-serif" font-size="104" font-weight="800" letter-spacing="-4" fill="#ECF1F5">Creator<tspan fill="#33CCFF">Lab</tspan></text>
+  <text x="72" y="246" font-family="Arial,Helvetica,sans-serif" font-size="26" fill="#9AA6B2">Tu equipo de contenido: estratega, guionista, editor,</text>
+  <text x="72" y="282" font-family="Arial,Helvetica,sans-serif" font-size="26" fill="#9AA6B2">motion designer y coach. En español y hecho a tu marca.</text>
+  <!-- línea de tiempo de un reel -->
+  <g font-family="ui-monospace,Consolas,monospace" font-size="13" font-weight="600">
+    <rect x="72"  y="330" width="96"  height="44" rx="6" fill="#33CCFF"/><text x="84"  y="358" fill="#06131A">GANCHO</text>
+    <rect x="174" y="330" width="210" height="44" rx="6" fill="#1B3A4A"/><text x="186" y="358" fill="#CFE9F5">LEAD</text>
+    <rect x="390" y="330" width="120" height="44" rx="6" fill="#1B3A4A"/><text x="402" y="358" fill="#CFE9F5">CUERPO 1</text>
+    <rect x="516" y="330" width="66"  height="44" rx="6" fill="#1B3A4A"/><text x="526" y="358" fill="#CFE9F5">LOOP</text>
+    <rect x="588" y="330" width="120" height="44" rx="6" fill="#1B3A4A"/><text x="600" y="358" fill="#CFE9F5">CUERPO 2</text>
+    <rect x="714" y="330" width="180" height="44" rx="6" fill="#ECF1F5"/><text x="726" y="358" fill="#0B0F14">WOW</text>
+    <rect x="900" y="330" width="120" height="44" rx="6" fill="#1B3A4A"/><text x="912" y="358" fill="#CFE9F5">CTA</text>
+  </g>
+  <g font-family="ui-monospace,Consolas,monospace" font-size="12" fill="#5D6B79">
+    <text x="72" y="396">0 s</text><text x="160" y="396">3 s</text><text x="370" y="396">10 s</text><text x="700" y="396">~60 %</text><text x="996" y="396">30 s</text>
+  </g>
+  <!-- celular -->
+  <g transform="translate(1088 70)">
+    <rect width="132" height="262" rx="22" fill="#0E1319" stroke="#2A3746" stroke-width="3"/>
+    <rect x="44" y="12" width="44" height="10" rx="5" fill="#2A3746"/>
+    <rect x="16" y="46" width="78" height="22" rx="10" fill="#1B3A4A"/>
+    <rect x="38" y="78" width="78" height="22" rx="10" fill="#33CCFF"/>
+    <rect x="16" y="110" width="92" height="22" rx="10" fill="#1B3A4A"/>
+    <rect x="16" y="190" width="100" height="10" rx="5" fill="#ECF1F5"/>
+    <rect x="30" y="206" width="72" height="10" rx="5" fill="#9AA6B2"/>
+    <circle cx="66" cy="160" r="14" fill="none" stroke="#33CCFF" stroke-width="3"/>
+    <path d="M60 160l4 4 8-9" fill="none" stroke="#33CCFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

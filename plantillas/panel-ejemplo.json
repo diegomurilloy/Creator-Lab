@@ -1,0 +1,491 @@
+{
+ "_nota": "Datos de una marca FICTICIA para ver el panel lleno. Cárgalos con ArtifactData o publícalos junto a panel.html para la vista de ejemplo; bórralos cuando tengas los tuyos.",
+ "perfil": {
+  "firma": {
+   "orden": 0,
+   "seccion": "Identidad",
+   "titulo": "Nombre y usuario",
+   "ayuda": "Sale en el encabezado del panel.",
+   "texto": "Lucía Ejemplo · @lucia.ejemplo",
+   "ancho": false,
+   "sincronizado": true
+  },
+  "mensaje": {
+   "orden": 1,
+   "seccion": "Mensaje",
+   "titulo": "Mensaje",
+   "ayuda": "La creencia a la que siempre regresas.",
+   "texto": "«Cocinar rico entre semana no es cuestión de tiempo, es de plan. Aquí te enseño el mío, con mis fallas incluidas.» (marca ficticia de ejemplo)",
+   "ancho": true,
+   "sincronizado": true
+  },
+  "pilar-hago": {
+   "orden": 2,
+   "seccion": "Pilares",
+   "titulo": "Lo que hago",
+   "ayuda": "Habilidad",
+   "texto": "Cenas de 15 minutos · Planear la semana en un domingo · Cocinar con lo que hay en el refri",
+   "ancho": false,
+   "sincronizado": true
+  },
+  "pilar-pienso": {
+   "orden": 3,
+   "seccion": "Pilares",
+   "titulo": "Cómo pienso",
+   "ayuda": "Perspectiva",
+   "texto": "Comer bien sin culpa · Errores que me costaron un negocio · Creencias que cambié de la comida",
+   "ancho": false,
+   "sincronizado": true
+  },
+  "pilar-vivo": {
+   "orden": 4,
+   "seccion": "Pilares",
+   "titulo": "Cómo vivo",
+   "ayuda": "Estilo de vida",
+   "texto": "Trabajo de oficina y negocio de noche · Mercado de los sábados · Mi presupuesto de súper",
+   "ancho": false,
+   "sincronizado": true
+  },
+  "pilar-amo": {
+   "orden": 5,
+   "seccion": "Pilares",
+   "titulo": "Lo que amo",
+   "ayuda": "Pasiones",
+   "texto": "Correr los domingos · Novelas de misterio · Cocina de mi abuela",
+   "ancho": false,
+   "sincronizado": true
+  },
+  "avatar-demo": {
+   "orden": 6,
+   "seccion": "Avatar",
+   "titulo": "Demográfico",
+   "ayuda": "",
+   "texto": "25 a 35 años, ciudades de LATAM, gente que trabaja todo el día y llega sin ganas de cocinar.",
+   "ancho": false,
+   "sincronizado": true
+  },
+  "ancla": {
+   "orden": 7,
+   "seccion": "Ancla y voz",
+   "titulo": "Ancla",
+   "ayuda": "Lo que vendes",
+   "texto": "Olla Ejemplo (kits de comida de la semana, ficticio), dos o tres veces por semana. Palabra clave: OLLA.",
+   "ancho": false,
+   "sincronizado": true
+  },
+  "voz": {
+   "orden": 8,
+   "seccion": "Ancla y voz",
+   "titulo": "Voz",
+   "ayuda": "",
+   "texto": "De tú, directa y con humor; frases cortas; nunca «superfood» ni «detox».",
+   "ancho": false,
+   "sincronizado": true
+  }
+ },
+ "marca_visual": {
+  "lucia": {
+   "orden": 0,
+   "clave": "lucia",
+   "nombre": "Lucía (personal)",
+   "logo": "",
+   "colores": [
+    {
+     "tema": "claro",
+     "token": "bg",
+     "rol": "Fondo",
+     "hex": "#FBF6EE",
+     "uso": "escenas claras"
+    },
+    {
+     "tema": "claro",
+     "token": "card",
+     "rol": "Tarjeta",
+     "hex": "#FFFFFF",
+     "uso": "tarjetas"
+    },
+    {
+     "tema": "claro",
+     "token": "ink",
+     "rol": "Texto",
+     "hex": "#1E1A16",
+     "uso": "texto"
+    },
+    {
+     "tema": "claro",
+     "token": "sec",
+     "rol": "Secundario",
+     "hex": "#6B6259",
+     "uso": "apoyo"
+    },
+    {
+     "tema": "claro",
+     "token": "line",
+     "rol": "Líneas",
+     "hex": "#E8DFD2",
+     "uso": "bordes"
+    },
+    {
+     "tema": "claro",
+     "token": "accent",
+     "rol": "Tomate (texto)",
+     "hex": "#B23A1E",
+     "uso": "palabra clave"
+    },
+    {
+     "tema": "claro",
+     "token": "fill",
+     "rol": "Tomate",
+     "hex": "#E0552F",
+     "uso": "rellenos"
+    },
+    {
+     "tema": "claro",
+     "token": "bad",
+     "rol": "Error",
+     "hex": "#9E2B25",
+     "uso": "errores"
+    },
+    {
+     "tema": "oscuro",
+     "token": "bg",
+     "rol": "Fondo",
+     "hex": "#17130F",
+     "uso": "apagones"
+    },
+    {
+     "tema": "oscuro",
+     "token": "card",
+     "rol": "Tarjeta",
+     "hex": "#221D18",
+     "uso": "paneles"
+    },
+    {
+     "tema": "oscuro",
+     "token": "ink",
+     "rol": "Texto",
+     "hex": "#FBF6EE",
+     "uso": "texto"
+    },
+    {
+     "tema": "oscuro",
+     "token": "sec",
+     "rol": "Secundario",
+     "hex": "#B3A99D",
+     "uso": "apoyo"
+    },
+    {
+     "tema": "oscuro",
+     "token": "line",
+     "rol": "Líneas",
+     "hex": "#3A322A",
+     "uso": "bordes"
+    },
+    {
+     "tema": "oscuro",
+     "token": "accent",
+     "rol": "Tomate claro",
+     "hex": "#FF8A65",
+     "uso": "acento"
+    },
+    {
+     "tema": "oscuro",
+     "token": "fill",
+     "rol": "Tomate claro",
+     "hex": "#FF8A65",
+     "uso": "rellenos"
+    },
+    {
+     "tema": "oscuro",
+     "token": "bad",
+     "rol": "Error",
+     "hex": "#F08A7E",
+     "uso": "errores"
+    }
+   ],
+   "fuentes": "Fraunces · titulares\nInter · texto",
+   "textos": "Cocinar rico entre semana es cuestión de plan.",
+   "nota": "",
+   "fuente": "marca ficticia de ejemplo",
+   "sincronizado": true
+  },
+  "olla": {
+   "orden": 1,
+   "clave": "olla",
+   "nombre": "Olla Ejemplo",
+   "logo": "",
+   "colores": [
+    {
+     "tema": "claro",
+     "token": "bg",
+     "rol": "Fondo",
+     "hex": "#F3F6F1",
+     "uso": "fondo"
+    },
+    {
+     "tema": "claro",
+     "token": "card",
+     "rol": "Tarjeta",
+     "hex": "#FFFFFF",
+     "uso": "tarjetas"
+    },
+    {
+     "tema": "claro",
+     "token": "ink",
+     "rol": "Texto",
+     "hex": "#14201A",
+     "uso": "texto"
+    },
+    {
+     "tema": "claro",
+     "token": "sec",
+     "rol": "Secundario",
+     "hex": "#5A665F",
+     "uso": "apoyo"
+    },
+    {
+     "tema": "claro",
+     "token": "line",
+     "rol": "Líneas",
+     "hex": "#DCE4DD",
+     "uso": "bordes"
+    },
+    {
+     "tema": "claro",
+     "token": "accent",
+     "rol": "Verde olla",
+     "hex": "#2E6B4A",
+     "uso": "acento"
+    },
+    {
+     "tema": "claro",
+     "token": "fill",
+     "rol": "Verde olla",
+     "hex": "#2E6B4A",
+     "uso": "rellenos"
+    },
+    {
+     "tema": "claro",
+     "token": "bad",
+     "rol": "Error",
+     "hex": "#A8432B",
+     "uso": "errores"
+    }
+   ],
+   "fuentes": "DM Sans · todo",
+   "textos": "Tu semana de comida, resuelta.",
+   "nota": "",
+   "fuente": "marca ficticia de ejemplo",
+   "sincronizado": true
+  }
+ },
+ "ganchos": {
+  "g1": {
+   "orden": 0,
+   "codigo": "G1",
+   "categoria": "Fórmulas base",
+   "nombre": "Resultado primero",
+   "molde": "Abres con el resultado ya funcionando",
+   "ejemplo": "«Esta cena la hice en 12 minutos y con una sola sartén.»",
+   "referencia": "referencias/ganchos.md",
+   "nota": "",
+   "sincronizado": true
+  },
+  "g9": {
+   "orden": 1,
+   "codigo": "G9",
+   "categoria": "Fórmulas base",
+   "nombre": "POV / escena reconocible",
+   "molde": "El espectador dentro de algo que ya vivió",
+   "ejemplo": "«POV: abres el refri el domingo en la noche y no hay nada.»",
+   "referencia": "referencias/ganchos.md",
+   "nota": "",
+   "sincronizado": true
+  },
+  "g23": {
+   "orden": 2,
+   "codigo": "G23",
+   "categoria": "Error trampa",
+   "nombre": "",
+   "molde": "«No empieces a [actividad] hasta que aprendas a [paso].»",
+   "ejemplo": "«No empieces a hacer meal prep hasta que sepas cuánto te dura cada cosa.»",
+   "referencia": "@dvad.fk",
+   "nota": "",
+   "sincronizado": true
+  }
+ },
+ "inspiracion": {
+  "ejemplo-recetas-1": {
+   "orden": 0,
+   "marca": "lucia",
+   "lote": "recetas rápidas",
+   "carpeta": "personal/virales/2026-01-10 recetas rápidas/video1",
+   "titulo": "video1",
+   "cuenta": "@cuenta.de.referencia",
+   "cuenta_detalle": "cuenta ficticia de ejemplo",
+   "gancho": "«Cena para cuatro con lo que sobró del domingo.»",
+   "formula": "G1 Resultado primero",
+   "por_que": "El plato terminado está en el cuadro 0 y la receta se paga a los 6 s.",
+   "replicar": "Mi versión: «Tres cenas con un solo pollo rostizado».",
+   "miniatura": "",
+   "nota": "",
+   "sincronizado": true
+  }
+ },
+ "ideas": {
+  "i1": {
+   "orden": 0,
+   "marca": "lucia",
+   "destino": "parrilla",
+   "titulo": "P## «Tres cenas con un solo pollo rostizado»",
+   "detalle": "Pilar Lo que hago · G1 · no es ancla",
+   "origen": "ficha video1",
+   "estado": "nueva",
+   "nota": "",
+   "sincronizado": true
+  },
+  "i2": {
+   "orden": 1,
+   "marca": "olla",
+   "destino": "parrilla",
+   "titulo": "M## «¿En qué se te va el súper?» con barra segmentada",
+   "detalle": "Ancla · G42",
+   "origen": "patron.md",
+   "estado": "por pulir",
+   "nota": "",
+   "sincronizado": true
+  },
+  "i3": {
+   "orden": 2,
+   "marca": "todas",
+   "destino": "libreria",
+   "titulo": "Barra segmentada por destino",
+   "detalle": "Úsala cuando: desglosas un total. Para construirla: total que rueda y segmentos con objeto.",
+   "origen": "@lx.growth × @tappeame.mx",
+   "estado": "por pulir",
+   "nota": "",
+   "sincronizado": true
+  }
+ },
+ "aprendizajes": {
+  "a000": {
+   "orden": 0,
+   "fecha": "2026-01-15",
+   "pieza": "P01 (ejemplo)",
+   "probado": "Gancho G9 con escena del refri vacío",
+   "resultado": "sin métricas todavía",
+   "leccion": "Pista: medir retención a 3 s contra un G1 la próxima semana.",
+   "sincronizado": true
+  }
+ },
+ "cultura": {
+  "c00": {
+   "orden": 0,
+   "tipo": "central",
+   "numero": "",
+   "titulo": "",
+   "texto": "La gente compra desde la cultura a la que pertenece: primero la escena, luego el producto.",
+   "sincronizado": true
+  },
+  "c01": {
+   "orden": 1,
+   "tipo": "principio",
+   "numero": "1",
+   "titulo": "Empieza por la escena",
+   "texto": "El domingo en la noche frente al refri vacío.",
+   "sincronizado": true
+  },
+  "q00": {
+   "orden": 900,
+   "tipo": "revision",
+   "numero": "",
+   "titulo": "",
+   "texto": "¿Alguien de mi público se reconoce en los primeros 3 segundos?",
+   "sincronizado": true
+  }
+ },
+ "libreria": {
+  "subtitulos": {
+   "orden": 0,
+   "marca": "todas",
+   "tipo": "reel",
+   "nombre": "Subtítulos karaoke",
+   "que": "≤4 palabras con la palabra activa en pastilla.",
+   "frase": "siempre",
+   "codigo": "kit/src/libreria/subtitulos.tsx · Subtitulos",
+   "estado": "probado",
+   "nota": "",
+   "video": "",
+   "tambien": "",
+   "sincronizado": true
+  },
+  "medidor": {
+   "orden": 1,
+   "marca": "todas",
+   "tipo": "reel",
+   "nombre": "Medidor",
+   "que": "Sube 0→100 % desde el cuadro 0 y se desploma en la palabra clave.",
+   "frase": "ganas, energía, «ya perdiste»",
+   "codigo": "kit/src/libreria/objetos.tsx · Medidor",
+   "estado": "probado",
+   "nota": "",
+   "video": "",
+   "tambien": "",
+   "sincronizado": true
+  },
+  "hoja-enviar": {
+   "orden": 2,
+   "marca": "todas",
+   "tipo": "personal",
+   "nombre": "Hoja «Mándaselo a…»",
+   "que": "La hoja de compartir con contactos; se elige uno y se envía.",
+   "frase": "CTA para DM",
+   "codigo": "kit/src/libreria/comun.tsx · HojaEnviar",
+   "estado": "probado",
+   "nota": "",
+   "video": "",
+   "tambien": "",
+   "sincronizado": true
+  },
+  "idea-pizarra": {
+   "orden": 3,
+   "marca": "lucia",
+   "tipo": "idea",
+   "nombre": "Diagrama tipo pizarra",
+   "que": "Se arma rama por rama sobre el talking head.",
+   "frase": "explicas un proceso",
+   "codigo": "(sin código)",
+   "estado": "por pulir",
+   "nota": "",
+   "video": "",
+   "tambien": "",
+   "sincronizado": true
+  }
+ },
+ "reglas": {
+  "r1": {
+   "orden": 0,
+   "tipo": "regla",
+   "texto": "Un reel no es un carrusel: lo visual complementa al audio.",
+   "porque": "El guion escrito en pantalla se siente lento.",
+   "origen": "referencias/libreria-motion.md",
+   "sincronizado": true
+  },
+  "r2": {
+   "orden": 1,
+   "tipo": "regla",
+   "texto": "Nunca digo «superfood» ni «detox».",
+   "porque": "No es mi voz (ejemplo de regla propia).",
+   "origen": "personal/reglas.md",
+   "sincronizado": true
+  },
+  "r3": {
+   "orden": 2,
+   "tipo": "rechazado",
+   "texto": "Texto letra por letra",
+   "porque": "Efectista; la palabra es la unidad.",
+   "origen": "referencias/rechazados.md",
+   "sincronizado": true
+  }
+ }
+}

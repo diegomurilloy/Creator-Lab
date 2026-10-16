@@ -1,0 +1,12 @@
+# Dependencias de los scripts de Creator Lab (Python 3.10+). Instala con: pip install -r requirements.txt
+# Además necesitas ffmpeg/ffprobe en el PATH.
+
+# Transcripción con tiempos por palabra (transcribir.py, analizar_video.py)
+faster-whisper>=1.0
+# Audio, música, análisis de video y hojas de contacto
+numpy>=1.24
+Pillow>=10.0
+# Recorte de la persona para portadas (recorta.py). Usa onnxruntime en CPU.
+rembg[cpu]>=2.0.50
+# Exportar carruseles HTML a PNG/MP4/PDF (export_carrusel.py). Después: python -m playwright install chromium
+playwright>=1.40

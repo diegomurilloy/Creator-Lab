@@ -1,0 +1,89 @@
+{
+ "nota": "Efectos propios, sintetizados con numpy para Creator Lab (sin muestras de terceros); se publican con el kit bajo la licencia del repo. Las rutas son relativas al proyecto de Remotion (kit/ de este repo o el `kit` de tu personal/config.md).",
+ "sonidos": [
+  {
+   "path": "public/sfx/borrador.wav",
+   "file": "borrador.wav",
+   "seconds": 1.0,
+   "group": "foley",
+   "pack": "Creator Lab (sintetizados con numpy)"
+  },
+  {
+   "path": "public/sfx/ding.wav",
+   "file": "ding.wav",
+   "seconds": 0.7,
+   "group": "clicks y UI",
+   "pack": "Creator Lab (sintetizados con numpy)"
+  },
+  {
+   "path": "public/sfx/enviar.wav",
+   "file": "enviar.wav",
+   "seconds": 0.19,
+   "group": "clicks y UI",
+   "pack": "Creator Lab (sintetizados con numpy)"
+  },
+  {
+   "path": "public/sfx/golpe.wav",
+   "file": "golpe.wav",
+   "seconds": 0.25,
+   "group": "golpes e impactos",
+   "pack": "Creator Lab (sintetizados con numpy)"
+  },
+  {
+   "path": "public/sfx/moneda.wav",
+   "file": "moneda.wav",
+   "seconds": 0.5,
+   "group": "foley",
+   "pack": "Creator Lab (sintetizados con numpy)"
+  },
+  {
+   "path": "public/sfx/papel.wav",
+   "file": "papel.wav",
+   "seconds": 0.9,
+   "group": "foley",
+   "pack": "Creator Lab (sintetizados con numpy)"
+  },
+  {
+   "path": "public/sfx/pop.wav",
+   "file": "pop.wav",
+   "seconds": 0.09,
+   "group": "clicks y UI",
+   "pack": "Creator Lab (sintetizados con numpy)"
+  },
+  {
+   "path": "public/sfx/recibir.wav",
+   "file": "recibir.wav",
+   "seconds": 0.21,
+   "group": "clicks y UI",
+   "pack": "Creator Lab (sintetizados con numpy)"
+  },
+  {
+   "path": "public/sfx/reloj.wav",
+   "file": "reloj.wav",
+   "seconds": 0.06,
+   "group": "foley",
+   "pack": "Creator Lab (sintetizados con numpy)"
+  },
+  {
+   "path": "public/sfx/tic.wav",
+   "file": "tic.wav",
+   "seconds": 0.04,
+   "group": "clicks y UI",
+   "pack": "Creator Lab (sintetizados con numpy)"
+  },
+  {
+   "path": "public/sfx/whoosh.wav",
+   "file": "whoosh.wav",
+   "seconds": 0.55,
+   "group": "whooshes",
+   "pack": "Creator Lab (sintetizados con numpy)"
+  },
+  {
+   "path": "public/sfx/tecla.wav",
+   "file": "tecla.wav",
+   "seconds": 0.05,
+   "group": "clicks y UI",
+   "pack": "Creator Lab (sintetizados con numpy)"
+  }
+ ]
+}

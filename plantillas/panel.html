@@ -1,0 +1,758 @@
+<title>Creator Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: cabecera con el nombre, barra de pestañas fija y una retícula de fichas por pestaña
+   (Marca · Marca visual · Ganchos · Inspiración · Ideas · Aprendizajes · Cultura · Librería · Reglas).
+   Colores: tokens neutros por defecto (papel cálido, tinta e índigo). Al elegir una marca, los colores con «token»
+   de su documento en marca_visual reemplazan estos al cargar (con ajuste automático a contraste AA).
+   El encabezado (nombre · usuario) sale del documento perfil/firma: no hay que editar este archivo. Todos los pares de texto pasan 4.5:1 (scripts/contraste_panel.py). */
+:root {
+  --bg: #F4F2EE; --card: #FFFFFF; --ink: #17181A; --sec: #5E6168; --line: #DDD9D2; --soft: #EAE7E1;
+  --accent: #3A4BB0; --fill: #4B5CC4; --on-fill: #FFFFFF; --bad: #A8432B; --ok: #2F7D5B;
+  --field: #FFFFFF; --field-line: #8A8680; --focus: #3A4BB0;
+  --display: "Outfit", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "Cascadia Code", monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121316; --card: #1B1D21; --ink: #F1EFEA; --sec: #A0A4AB; --line: #2E3238; --soft: #24272C;
+  --accent: #9DAAFF; --fill: #9DAAFF; --on-fill: #0E1330; --bad: #EE8A6A; --ok: #6CC4A0;
+  --field: #0D0E11; --field-line: #6A6F78; --focus: #9DAAFF; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #121316; --card: #1B1D21; --ink: #F1EFEA; --sec: #A0A4AB; --line: #2E3238; --soft: #24272C;
+  --accent: #9DAAFF; --fill: #9DAAFF; --on-fill: #0E1330; --bad: #EE8A6A; --ok: #6CC4A0;
+  --field: #0D0E11; --field-line: #6A6F78; --focus: #9DAAFF; color-scheme: dark }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--display); font-size: 15px; line-height: 1.5; margin: 0; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: 16px; padding-block: 28px 80px; }
+@media (min-width: 640px) { .wrap { padding-inline: 20px; } }
+header.top { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; }
+h1 { font-size: clamp(34px, 6vw, 56px); line-height: 1; letter-spacing: -0.03em; margin: 0; font-weight: 800; text-wrap: balance; }
+h1 span { color: var(--accent); }
+.sub { color: var(--sec); max-width: 62ch; margin: 10px 0 0; }
+.mono { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sec); }
+.pend { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); max-width: 360px; }
+.pend b { font-family: var(--mono); font-size: 20px; color: var(--accent); font-variant-numeric: tabular-nums; }
+.pend.on b { color: var(--bad); }
+nav.tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); display: flex; gap: 6px; padding-block: 14px; margin-top: 22px; border-bottom: 1px solid var(--line); overflow-x: auto; scrollbar-width: thin; }
+nav.tabs button { font: 600 15px var(--display); color: var(--sec); background: none; border: 0; padding: 8px 14px; border-radius: 999px; cursor: pointer; white-space: nowrap; }
+nav.tabs button[aria-selected="true"] { background: var(--ink); color: var(--bg); }
+button:focus-visible, textarea:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+section.panel { margin-top: 26px; }
+.intro { color: var(--sec); max-width: 70ch; margin: 0 0 18px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap: 14px; }
+.ficha { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.ficha.ancho, .ancho { grid-column: 1 / -1; }
+.cab { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.ficha h3 { margin: 0; font-size: 17px; font-weight: 700; }
+.sec-tit { grid-column: 1 / -1; padding-top: 12px; }
+.ayuda { font-size: 13.5px; color: var(--sec); }
+/* Campos editables: siempre con fondo y borde visibles, en claro y en oscuro */
+.edit, .campo { width: 100%; font: 15px/1.55 var(--display); color: var(--ink); background: var(--field); border: 1px solid var(--field-line); border-radius: 10px; padding: 7px 10px; resize: vertical; min-height: 2.4em; }
+textarea.edit { overflow: hidden; resize: none; field-sizing: content; }
+.edit:hover, .campo:hover { border-color: var(--ink); }
+.edit:focus, .campo:focus { border-color: var(--focus); }
+.edit::placeholder, .campo::placeholder, input::placeholder, textarea::placeholder { color: var(--sec); opacity: 1; }
+.edit.grande { font-size: 22px; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; }
+.edit.chico { font-size: 13.5px; }
+.estado { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
+.e-cambio { background: color-mix(in srgb, var(--bad) 12%, var(--card)); color: var(--bad); }
+.e-ok { color: var(--sec); }
+.filtros { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px; }
+.busca { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 0 0 12px; }
+.busca input { flex: 1 1 260px; min-width: 0; font: 15px var(--display); color: var(--ink); background: var(--field); border: 1px solid var(--field-line); border-radius: 999px; padding: 10px 16px; }
+.btn.mas { grid-column: 1 / -1; justify-self: center; margin-top: 6px; }
+.chip { font: 500 13px var(--display); padding: 6px 12px; border-radius: 999px; border: 1px solid var(--field-line); background: var(--card); color: var(--ink); cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--fill); border-color: var(--fill); color: var(--on-fill); }
+.lib { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr)); gap: 14px; }
+.el { background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+.el .media { aspect-ratio: 4 / 5; background: var(--soft); display: grid; place-items: center; max-width: 100%; }
+.el .media.ancha { aspect-ratio: auto; display: block; }
+.el .media video, .el .media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.el .media .vacio { color: var(--sec); font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; padding: 16px; text-align: center; }
+.el .body { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 6px; }
+.el h4 { margin: 0; font-size: 16px; line-height: 1.25; }
+.que { color: var(--sec); font-size: 13.5px; margin: 0; }
+.lbl { font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--sec); margin-top: 4px; }
+.codigo { font-family: var(--mono); font-size: 11.5px; color: var(--sec); overflow-wrap: anywhere; }
+.fila { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 4px; flex-wrap: wrap; }
+select { font: 500 13px var(--display); color: var(--ink); background: var(--field); border: 1px solid var(--field-line); border-radius: 8px; padding: 4px 8px; }
+.s-probado { border-left: 4px solid var(--ok); }
+.s-pulir { border-left: 4px solid var(--fill); }
+.s-descartado { border-left: 4px solid var(--bad); }
+.s-descartado .body > *:not(.fila) { opacity: .85; }
+.nuevo { background: var(--card); border: 1px dashed var(--field-line); border-radius: 16px; padding: 16px; display: grid; gap: 8px; margin-top: 18px; }
+.nuevo .acciones { display: flex; justify-content: flex-end; }
+.btn { font: 600 14px var(--display); background: var(--ink); color: var(--bg); border: 0; border-radius: 999px; padding: 9px 16px; cursor: pointer; }
+.reglas { display: grid; gap: 10px; }
+.regla { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 12px 16px; display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; align-items: start; }
+.regla .origen { grid-column: 1 / -1; font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--sec); }
+.regla .ancho2 { grid-column: 1 / -1; }
+.aviso { padding: 40px 20px; text-align: center; color: var(--sec); border: 1px dashed var(--field-line); border-radius: 16px; grid-column: 1 / -1; }
+.gcod { font-family: var(--mono); font-size: 13px; font-weight: 500; color: var(--accent); }
+.tag { font: 500 12px var(--display); color: var(--ink); background: var(--soft); border-radius: 999px; padding: 2px 10px; }
+/* Marca visual */
+.marca-v { display: grid; gap: 14px; }
+.mv-cab { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+.mv-logo { width: 72px; height: 72px; border-radius: 16px; border: 1px solid var(--line); background: var(--soft); object-fit: contain; }
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr)); gap: 10px; }
+.sw { display: grid; grid-template-columns: 44px 1fr; gap: 4px 10px; align-items: center; border: 1px solid var(--line); border-radius: 12px; padding: 8px; background: var(--bg); }
+.sw input[type="color"] { width: 44px; height: 44px; padding: 0; border: 1px solid var(--field-line); border-radius: 10px; background: none; cursor: pointer; grid-row: span 2; }
+.sw .hex { font: 500 13px var(--mono); width: 100%; color: var(--ink); background: var(--field); border: 1px solid var(--field-line); border-radius: 8px; padding: 3px 6px; }
+.sw .rol { font-size: 12.5px; color: var(--sec); }
+.marcas-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: 18px; }
+.marcas-bar .filtros { margin: 0; }
+.marcas-bar .ayuda { flex: 1 1 280px; }
+.tag.comp { background: transparent; border: 1px solid var(--field-line); color: var(--sec); }
+.toast { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 9px 16px; border-radius: 999px; font-weight: 600; font-size: 14px; opacity: 0; transition: opacity .2s; pointer-events: none; }
+.toast.on { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .toast { transition: none; } }
+</style>
+<style id="tema-marca"></style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="mono" id="firma">Tu nombre · @tu_usuario</div>
+      <h1>Creator <span>Lab</span></h1>
+      <p class="sub">Tu marca, tu marca visual, ganchos, inspiración, ideas, aprendizajes y tu librería de motion. Edita cualquier texto: se guarda solo y queda marcado para pasarlo a la skill.</p>
+    </div>
+    <div class="pend" id="pend">
+      <b id="pendN">0</b>
+      <span id="pendT">cambios por pasar a la skill. Cuando quieras, dile a Claude «sincroniza Creator Lab».</span>
+    </div>
+  </header>
+
+  <div class="marcas-bar">
+    <span class="mono">Marca</span>
+    <div class="filtros" id="sel-marca" role="group" aria-label="Elige la marca"></div>
+    <span class="ayuda">Librería, marca visual, inspiración e ideas son de cada marca; ganchos, marca personal, reglas, aprendizajes y cultura se comparten.</span>
+  </div>
+
+  <nav class="tabs" role="tablist" aria-label="Secciones del panel">
+    <button role="tab" aria-selected="true" data-tab="marca">Marca</button>
+    <button role="tab" aria-selected="false" data-tab="visual">Marca visual</button>
+    <button role="tab" aria-selected="false" data-tab="ganchos">Ganchos</button>
+    <button role="tab" aria-selected="false" data-tab="inspiracion">Inspiración</button>
+    <button role="tab" aria-selected="false" data-tab="ideas">Ideas</button>
+    <button role="tab" aria-selected="false" data-tab="aprendizajes">Aprendizajes</button>
+    <button role="tab" aria-selected="false" data-tab="cultura">Cultura</button>
+    <button role="tab" aria-selected="false" data-tab="libreria">Librería</button>
+    <button role="tab" aria-selected="false" data-tab="reglas">Reglas</button>
+  </nav>
+
+  <section class="panel" id="p-marca" role="tabpanel">
+    <p class="intro">Compartido entre marcas. Tu perfil con el framework «Tú eres el nicho»: qué dices, a quién y por qué, más tu ancla. Todo lo que crea la skill se revisa contra esto.</p>
+    <div class="grid" id="marca"><div class="aviso">Cargando tu marca…</div></div>
+  </section>
+
+  <section class="panel" id="p-visual" role="tabpanel" hidden>
+    <p class="intro">Logo, colores y fuentes de cada cuenta. Cambia un color o escribe su hex: se guarda y queda para pasarlo a <span class="codigo">referencias/paletas.md</span>. La marca que elijas arriba pinta esta página (con contraste AA en claro y oscuro).</p>
+    <div class="marca-v" id="visual"><div class="aviso">Cargando tu marca visual…</div></div>
+  </section>
+
+  <section class="panel" id="p-ganchos" role="tabpanel" hidden>
+    <p class="intro">Compartido entre marcas. Tus fórmulas de gancho (el código va en la columna «Fórmula de gancho» de la parrilla). El molde es la estructura; el ejemplo siempre con un dato tuyo y real.</p>
+    <div class="busca"><input id="b-ganchos" type="search" placeholder="Busca: secreto, lista, «no empieces», autoridad…" aria-label="Buscar ganchos"><span class="mono" id="c-ganchos"></span></div>
+    <div class="filtros" id="f-ganchos"></div>
+    <div class="grid" id="ganchos"><div class="aviso">Cargando ganchos…</div></div>
+    <form class="nuevo" id="n-gancho">
+      <div class="mono">Nuevo gancho</div>
+      <input class="campo" id="ng-cat" placeholder="Categoría (p. ej. «Contra la corriente»)" aria-label="Categoría">
+      <textarea class="campo" id="ng-molde" rows="2" placeholder="Molde: «No empieces a [actividad] hasta que…»" aria-label="Molde" required></textarea>
+      <textarea class="campo" id="ng-ej" rows="2" placeholder="Ejemplo con tu contenido" aria-label="Ejemplo"></textarea>
+      <input class="campo" id="ng-ref" placeholder="Referencia (cuenta o de dónde lo viste)" aria-label="Referencia">
+      <div class="acciones"><button class="btn" type="submit">Agregar gancho</button></div>
+    </form>
+  </section>
+
+  <section class="panel" id="p-inspiracion" role="tabpanel" hidden>
+    <p class="intro">Los virales que analizamos para la marca elegida: de quién es, su gancho, por qué funciona y cómo lo llevas a tu marca. Se replica la estructura, nunca el texto, las imágenes ni la marca de nadie.</p>
+    <div class="busca"><input id="b-inspiracion" type="search" placeholder="Busca: cuenta, gancho, motion, lanzamiento…" aria-label="Buscar inspiración"><span class="mono" id="c-inspiracion"></span></div>
+    <div class="filtros" id="f-inspiracion"></div>
+    <div class="lib" id="inspiracion"><div class="aviso">Cargando inspiración…</div></div>
+  </section>
+
+  <section class="panel" id="p-ideas" role="tabpanel" hidden>
+    <p class="intro">Ideas de la marca elegida para la parrilla (pasan al Sheets solo cuando confirmas) e ideas de motion por pulir (van a la librería). Cambia el estado o reescríbelas.</p>
+    <div class="busca"><input id="b-ideas" type="search" placeholder="Busca: A/B, pizarra, serie, lanzamiento…" aria-label="Buscar ideas"><span class="mono" id="c-ideas"></span></div>
+    <div class="filtros" id="f-ideas"></div>
+    <div class="grid" id="ideas"><div class="aviso">Cargando ideas…</div></div>
+    <form class="nuevo" id="n-idea">
+      <div class="mono">Nueva idea</div>
+      <input class="campo" id="ni-titulo" placeholder="La idea en una línea" aria-label="Idea" required>
+      <textarea class="campo" id="ni-detalle" rows="2" placeholder="Cómo te la imaginas, gancho o referencia" aria-label="Detalle"></textarea>
+      <div class="fila"><label class="ayuda" for="ni-destino">Va a</label>
+        <select id="ni-destino"><option value="parrilla">La parrilla</option><option value="libreria">Ideas por pulir (librería)</option></select>
+        <button class="btn" type="submit">Agregar idea</button></div>
+    </form>
+  </section>
+
+  <section class="panel" id="p-aprendizajes" role="tabpanel" hidden>
+    <p class="intro">Compartido entre marcas. La bitácora de lo que tu contenido te va enseñando. El resultado lleva números reales o «sin métricas todavía»; con muestra chica, la lección es «pista», no «regla».</p>
+    <div class="reglas" id="aprendizajes"><div class="aviso">Cargando aprendizajes…</div></div>
+    <form class="nuevo" id="n-apr">
+      <div class="mono">Nuevo aprendizaje</div>
+      <input class="campo" id="na-pieza" placeholder="Pieza (p. ej. D08 o «tema del gym»)" aria-label="Pieza" required>
+      <textarea class="campo" id="na-probado" rows="2" placeholder="Qué se probó" aria-label="Qué se probó"></textarea>
+      <input class="campo" id="na-resultado" placeholder="Resultado real (o «sin métricas todavía»)" aria-label="Resultado">
+      <textarea class="campo" id="na-leccion" rows="2" placeholder="Lección: qué harás distinto la próxima vez" aria-label="Lección"></textarea>
+      <div class="acciones"><button class="btn" type="submit">Agregar aprendizaje</button></div>
+    </form>
+  </section>
+
+  <section class="panel" id="p-cultura" role="tabpanel" hidden>
+    <p class="intro">Compartido entre marcas. Comerciales que no se sienten comerciales: escena, identidad y cultura antes que funciones. Se revisa en toda pieza de producto y lanzamiento.</p>
+    <div class="reglas" id="cultura"><div class="aviso">Cargando…</div></div>
+    <form class="nuevo" id="n-cul">
+      <div class="mono">Nuevo principio o pregunta</div>
+      <input class="campo" id="nc-titulo" placeholder="Título corto (opcional)" aria-label="Título">
+      <textarea class="campo" id="nc-texto" rows="2" placeholder="El principio, o la pregunta para revisar antes de entregar" aria-label="Texto" required></textarea>
+      <div class="fila"><select id="nc-tipo" aria-label="Tipo"><option value="principio">Principio</option><option value="revision">Pregunta de revisión</option></select>
+        <button class="btn" type="submit">Agregar</button></div>
+    </form>
+  </section>
+
+  <section class="panel" id="p-libreria" role="tabpanel" hidden>
+    <p class="intro">Los elementos de la marca elegida, más los compartidos. Un elemento por componente: su preview, cuándo usarlo y de dónde tomarlo. Si algo surge en un reel, se toma de aquí o se edita y se reusa. Cambia el estado o deja una nota y lo ajusto en la librería.</p>
+    <div class="busca">
+      <input id="buscar" type="search" placeholder="Busca: chat, tachado, gancho, «de golpe», carrusel…" aria-label="Buscar en la librería">
+      <span class="mono" id="cuenta"></span>
+    </div>
+    <div class="filtros" id="filtros"></div>
+    <div class="lib" id="lib"><div class="aviso">Cargando la librería…</div></div>
+    <form class="nuevo" id="f-idea">
+      <div class="mono">Nueva idea para la librería</div>
+      <input class="campo" id="i-nombre" placeholder="Nombre (p. ej. «Contador que se rompe»)" aria-label="Nombre" required>
+      <input class="campo" id="i-frase" placeholder="Úsalo cuando la voz dice…" aria-label="Úsalo cuando dice">
+      <textarea class="campo" id="i-nota" rows="2" placeholder="Cómo te lo imaginas, o una referencia" aria-label="Nota"></textarea>
+      <div class="acciones"><button class="btn" type="submit">Agregar idea</button></div>
+    </form>
+  </section>
+
+  <section class="panel" id="p-reglas" role="tabpanel" hidden>
+    <p class="intro">Compartido entre marcas. Lo que aprendimos de tu feedback (se aplica siempre) y lo que ya se descartó (no se vuelve a proponer).</p>
+    <div class="filtros" id="filtrosR"></div>
+    <div class="reglas" id="reglas"><div class="aviso">Cargando reglas…</div></div>
+    <form class="nuevo" id="f-regla">
+      <div class="mono">Nueva regla</div>
+      <textarea class="campo" id="r-texto" rows="2" placeholder="Algo que siempre o nunca quieres en tu contenido" aria-label="Regla" required></textarea>
+      <div class="acciones"><button class="btn" type="submit">Agregar regla</button></div>
+    </form>
+  </section>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  const $ = (s) => document.querySelector(s);
+  const esc = (t) => String(t ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+  let db = null, userId = null;
+  const COLS = ["perfil", "marca_visual", "ganchos", "inspiracion", "ideas", "aprendizajes", "cultura", "libreria", "reglas"];
+  const TABS = ["marca", "visual", "ganchos", "inspiracion", "ideas", "aprendizajes", "cultura", "libreria", "reglas"];
+  const datos = {}; COLS.forEach((c) => (datos[c] = []));
+  const TANDA = 24;
+  const vista = { libFiltro: "todo", reglaFiltro: "regla", limite: TANDA, busca: "", f: {}, b: {}, lim: {}, marca: "" };
+  try { vista.marca = localStorage.getItem("cl-marca") || ""; } catch (e) {}
+
+  // ── Marcas: salen de marca_visual (campo clave). Librería, marca visual, inspiración e ideas se filtran por marca;
+  //    un doc con marca "todas" (o sin marca) sale en todas con la etiqueta «compartido». ──
+  const marcas = () => datos.marca_visual.filter((d) => d.clave).map((d) => ({ clave: String(d.clave), nombre: d.nombre || d.clave }));
+  const marcaActual = () => { const m = marcas(); return m.find((x) => x.clave === vista.marca) ? vista.marca : (m[0] ? m[0].clave : ""); };
+  const compartido = (d) => !d.marca || d.marca === "todas";
+  const deMarca = (d) => !marcaActual() || compartido(d) || d.marca === marcaActual();
+  function pintarSelector() {
+    const m = marcas(), cont = $("#sel-marca");
+    if (!m.length) { cont.innerHTML = ""; return; }
+    chips(cont, m.map((x) => [x.clave, x.nombre]), marcaActual(), (k) => {
+      vista.marca = k; try { localStorage.setItem("cl-marca", k); } catch (e) {}
+      ["libreria", "inspiracion", "ideas"].forEach((c) => (vista.lim[c] = TANDA)); vista.limite = TANDA;
+      pintarSelector(); aplicarTema(); pintarVisual(); pintarLib(); pintarInspiracion(); pintarIdeas();
+      const visible = TABS.find((t) => !$("#p-" + t).hidden); if (visible) medirPanel(visible);
+    });
+  }
+  function etiquetaCompartido(d) { return compartido(d) ? el("span", "tag comp", "compartido") : null; }
+
+  // ── Pestañas (recuerda la última en este navegador) ──
+  function abrir(tab) {
+    if (!TABS.includes(tab)) return;
+    document.querySelectorAll("nav.tabs button").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.tab === tab)));
+    TABS.forEach((t) => ($("#p-" + t).hidden = t !== tab));
+    medirPanel(tab);
+    try { localStorage.setItem("cl-tab", tab); } catch (e) {}
+  }
+  document.querySelectorAll("nav.tabs button").forEach((b) => b.addEventListener("click", () => abrir(b.dataset.tab)));
+  try { const t = localStorage.getItem("cl-tab"); if (t) abrir(t); } catch (e) {}
+  if (TABS.includes(location.hash.slice(1))) abrir(location.hash.slice(1));
+
+  let tt;
+  function toast(m) { const t = $("#toast"); t.textContent = m; t.classList.add("on"); clearTimeout(tt); tt = setTimeout(() => t.classList.remove("on"), 1600); }
+  function crecer(t) { if (!t.offsetParent) return; t.style.height = "auto"; t.style.height = t.scrollHeight + 2 + "px"; }
+  function medirPanel(tab) { requestAnimationFrame(() => document.querySelectorAll("#p-" + tab + " textarea.edit").forEach(crecer)); }
+  const ahora = () => ({ sincronizado: false, editadoEn: new Date().toISOString(), editadoPor: userId || "" });
+
+  // ── Guardar: merge + marca de pendiente ──
+  async function guardar(col, id, campo, valor) {
+    if (!db) return;
+    try { await db.collection(col).doc(id).update(Object.assign({ [campo]: valor }, ahora())); toast("Guardado"); }
+    catch (e) { toast("No se pudo guardar: " + (e && e.code ? e.code : "intenta de nuevo")); }
+  }
+  async function agregar(col, doc) {
+    if (!db) { toast("Abre la página con tu cuenta para agregar"); return false; }
+    try { await db.collection(col).add(Object.assign(doc, ahora())); toast("Agregado"); return true; }
+    catch (e) { toast("No se pudo agregar"); return false; }
+  }
+  function editable(col, id, campo, valor, clase, etiqueta, ph) {
+    const t = document.createElement("textarea");
+    t.className = "edit" + (clase ? " " + clase : "");
+    t.id = col + "-" + id + "-" + campo;
+    t.value = valor || ""; t.rows = 1;
+    t.setAttribute("aria-label", etiqueta || campo);
+    if (ph) t.placeholder = ph;
+    t.addEventListener("input", () => crecer(t));
+    t.addEventListener("blur", () => { if (t.value !== (valor || "")) { valor = t.value; guardar(col, id, campo, t.value); } });
+    requestAnimationFrame(() => crecer(t));
+    return t;
+  }
+  // Etiqueta + campo editable
+  function campo(padre, col, d, nombre, etiqueta, clase, ph) {
+    padre.appendChild(el("div", "lbl", etiqueta));
+    padre.appendChild(editable(col, d.id, nombre, d[nombre], clase, etiqueta, ph || "Escribe aquí…"));
+  }
+  function insignia(d) { return el("span", "estado " + (d.sincronizado === false ? "e-cambio" : "e-ok"), d.sincronizado === false ? "editado" : "en la skill"); }
+  function contarPendientes() {
+    const n = COLS.reduce((s, c) => s + datos[c].filter((d) => d.sincronizado === false).length, 0);
+    $("#pendN").textContent = n;
+    $("#pend").classList.toggle("on", n > 0);
+    $("#pendT").textContent = n ? "cambios por pasar a la skill. Dile a Claude «sincroniza Creator Lab»." : "cambios pendientes: todo está en la skill.";
+  }
+  // Chips de filtro genéricos
+  function chips(cont, opciones, actual, alElegir) {
+    cont.innerHTML = "";
+    opciones.forEach(([k, v]) => {
+      const b = el("button", "chip", v); b.type = "button"; b.setAttribute("aria-pressed", String(actual === k));
+      b.addEventListener("click", () => alElegir(k)); cont.appendChild(b);
+    });
+  }
+  // Tandas de 24 con «Ver más»
+  function tanda(cont, items, clave, pintarUno, repintar) {
+    const lim = vista.lim[clave] || TANDA;
+    items.slice(0, lim).forEach((d) => cont.appendChild(pintarUno(d)));
+    if (items.length > lim) {
+      const mas = el("button", "btn mas", "Ver más (" + (items.length - lim) + ")"); mas.type = "button";
+      mas.addEventListener("click", () => { vista.lim[clave] = lim + TANDA; repintar(); });
+      cont.appendChild(mas);
+    }
+  }
+  function busca(clave, campos) {
+    const q = (vista.b[clave] || "").toLowerCase();
+    return (d) => !q || campos.map((c) => d[c] || "").join(" ").toLowerCase().includes(q);
+  }
+  function enlazarBusca(clave, pintar) {
+    const i = $("#b-" + clave); if (!i) return;
+    i.addEventListener("input", () => { vista.b[clave] = i.value.trim(); vista.lim[clave] = TANDA; pintar(); });
+  }
+
+  // ── Tema desde la marca visual (solo hex válidos; ajusta a AA) ──
+  const HEX = /^#[0-9a-fA-F]{6}$/;
+  const lin = (c) => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
+  const rgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+  const lum = (h) => { const [r, g, b] = rgb(h).map((v) => lin(v / 255)); return 0.2126 * r + 0.7152 * g + 0.0722 * b; };
+  const contraste = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); };
+  const mezcla = (a, b, t) => "#" + rgb(a).map((v, i) => Math.round(v + (rgb(b)[i] - v) * t).toString(16).padStart(2, "0")).join("");
+  function aseguraAA(fg, fondos, hacia, min) {
+    let c = fg;
+    for (let i = 0; i <= 20 && fondos.some((f) => contraste(c, f) < min); i++) c = mezcla(fg, hacia, i / 20);
+    return c;
+  }
+  // Completa los tokens que la marca no define a partir de los suyos (nunca con los de otra marca)
+  function completa(t, oscuro, base) {
+    if (!t.bg || !t.ink) return Object.assign({}, base, t);
+    const o = Object.assign({}, t);
+    o.card = o.card || mezcla(o.bg, "#ffffff", oscuro ? 0.05 : 0.6);
+    o.line = o.line || mezcla(o.bg, o.ink, 0.12);
+    o.soft = o.soft || mezcla(o.bg, o.ink, 0.06);
+    o.field = o.field || (oscuro ? mezcla(o.bg, "#000000", 0.3) : "#ffffff");
+    o["field-line"] = o["field-line"] || mezcla(o.bg, o.ink, 0.45);
+    o.sec = o.sec || mezcla(o.ink, o.bg, 0.4);
+    o.accent = o.accent || o.ink;
+    o.fill = o.fill || o.accent;
+    o.focus = o.focus || o.accent;
+    o.bad = o.bad || (oscuro ? "#E8805F" : "#C8613F");
+    o.ok = o.ok || (oscuro ? "#6CC4A0" : "#2F7D5B");
+    return o;
+  }
+  function tokensDe(t, base, oscuro) {
+    const o = completa(t, oscuro, base);
+    const fondos = [o.bg, o.card, o.field];
+    o.ink = aseguraAA(o.ink, fondos, oscuro ? "#ffffff" : "#000000", 7);
+    ["sec", "accent", "focus"].forEach((k) => (o[k] = aseguraAA(o[k], fondos.concat(o.soft), o.ink, 4.5)));
+    o.bad = aseguraAA(o.bad, fondos, o.ink, 5.4); // 5.4 para que la insignia «editado» (fondo teñido) siga en AA
+    o["field-line"] = aseguraAA(o["field-line"], [o.field, o.card], o.ink, 3);
+    // Texto del chip activo: el que más contraste dé; si ninguno llega a AA, se oscurece el relleno.
+    const negro = mezcla(o.fill, "#000000", 0.85);
+    o["on-fill"] = contraste(negro, o.fill) >= contraste("#ffffff", o.fill) ? negro : "#ffffff";
+    if (contraste(o["on-fill"], o.fill) < 4.5) { o.fill = aseguraAA(o.fill, ["#ffffff"], "#000000", 4.5); o["on-fill"] = "#ffffff"; }
+    return o;
+  }
+  const BASE_CLARO = { bg: "#F4F2EE", card: "#FFFFFF", ink: "#17181A", sec: "#5E6168", line: "#DDD9D2", soft: "#EAE7E1", accent: "#3A4BB0", fill: "#4B5CC4", bad: "#A8432B", ok: "#2F7D5B", field: "#FFFFFF", "field-line": "#8A8680", focus: "#3A4BB0" };
+  const BASE_OSCURO = { bg: "#121316", card: "#1B1D21", ink: "#F1EFEA", sec: "#A0A4AB", line: "#2E3238", soft: "#24272C", accent: "#9DAAFF", fill: "#9DAAFF", bad: "#EE8A6A", ok: "#6CC4A0", field: "#0D0E11", "field-line": "#6A6F78", focus: "#9DAAFF" };
+  const vars = (o) => Object.entries(o).filter(([, v]) => HEX.test(v)).map(([k, v]) => "--" + k + ":" + v).join(";");
+  // El panel se pinta con los colores de la marca elegida (sus colores con «token»)
+  function aplicarTema() {
+    const m = datos.marca_visual.find((d) => d.clave && d.clave === marcaActual());
+    if (!m || !Array.isArray(m.colores)) { $("#tema-marca").textContent = ""; return; }
+    const t = { claro: {}, oscuro: {} };
+    m.colores.forEach((c) => {
+      if (!c || !c.token || !HEX.test(c.hex || "")) return;
+      t[c.tema === "oscuro" ? "oscuro" : "claro"][String(c.token).replace(/[^a-z-]/g, "")] = c.hex;
+    });
+    if (!Object.keys(t.claro).length && !Object.keys(t.oscuro).length) { $("#tema-marca").textContent = ""; return; }
+    const c = vars(tokensDe(t.claro, BASE_CLARO, false)), o = vars(tokensDe(t.oscuro, BASE_OSCURO, true));
+    $("#tema-marca").textContent = ":root{" + c + "}@media (prefers-color-scheme: dark){:root:not([data-theme=\"light\"]){" + o + "}}:root[data-theme=\"dark\"]{" + o + "}";
+  }
+
+  // ── Marca ──
+  // Encabezado: «Nombre · @usuario» sale del documento perfil/firma (lo siembra scripts/panel_seed.py desde personal/config.md)
+  function pintarFirma() {
+    const f = datos.perfil.find((d) => d.id === "firma");
+    if (f && f.texto) { $("#firma").textContent = f.texto; document.title = "Creator Lab · " + String(f.texto).split("·")[0].trim(); }
+  }
+  function pintarMarca() {
+    pintarFirma();
+    const cont = $("#marca");
+    if (!datos.perfil.length) { cont.innerHTML = '<div class="aviso">Todavía no hay perfil. Corre <b>/creator-lab marca</b> para hacer el onboarding.</div>'; return; }
+    cont.innerHTML = "";
+    let seccion = null;
+    datos.perfil.forEach((d) => {
+      if (d.seccion !== seccion) { seccion = d.seccion; const h = el("div", "sec-tit"); h.appendChild(el("div", "mono", seccion)); cont.appendChild(h); }
+      const f = el("article", "ficha" + (d.ancho ? " ancho" : ""));
+      const cab = el("div", "cab"); cab.appendChild(el("h3", "", d.titulo)); cab.appendChild(insignia(d)); f.appendChild(cab);
+      if (d.ayuda) f.appendChild(el("div", "ayuda", d.ayuda));
+      f.appendChild(editable("perfil", d.id, "texto", d.texto, d.id === "mensaje" ? "grande" : "", d.titulo));
+      cont.appendChild(f);
+    });
+  }
+
+  // ── Marca visual ──
+  function pintarVisual() {
+    const cont = $("#visual");
+    if (!datos.marca_visual.length) { cont.innerHTML = '<div class="aviso">Sin marca visual todavía. Pásale a Claude la URL de tu página y corre <b>scripts/extraer_marca.py</b>.</div>'; return; }
+    cont.innerHTML = "";
+    const mc = marcaActual();
+    const lista = datos.marca_visual.filter((d) => !mc || !d.clave || d.clave === mc);
+    if (!lista.length) { cont.innerHTML = '<div class="aviso">Esta marca todavía no tiene marca visual.</div>'; return; }
+    lista.forEach((d) => {
+      const f = el("article", "ficha");
+      const cab = el("div", "mv-cab");
+      if (d.logo) { const i = el("img", "mv-logo"); i.src = d.logo; i.alt = "Logo de " + (d.nombre || ""); i.loading = "lazy"; cab.appendChild(i); }
+      const tit = el("div"); tit.appendChild(el("h3", "", d.nombre || d.id));
+      if (d.fuente) tit.appendChild(el("div", "codigo", "Fuente: " + d.fuente));
+      cab.appendChild(tit);
+      const der = el("div"); der.style.marginLeft = "auto"; der.style.display = "flex"; der.style.gap = "8px"; der.style.alignItems = "center";
+      der.appendChild(el("span", "tag", "Pinta este panel"));
+      der.appendChild(insignia(d)); cab.appendChild(der); f.appendChild(cab);
+      const colores = Array.isArray(d.colores) ? d.colores : [];
+      ["claro", "oscuro"].forEach((tema) => {
+        const lista = colores.map((c, i) => [c, i]).filter(([c]) => (c.tema || "claro") === tema);
+        if (!lista.length) return;
+        f.appendChild(el("div", "lbl", tema === "claro" ? "Colores · claro / día" : "Colores · oscuro / noche"));
+        const g = el("div", "swatches");
+        lista.forEach(([c, i]) => {
+          const s = el("div", "sw");
+          const pick = document.createElement("input"); pick.type = "color"; pick.value = HEX.test(c.hex || "") ? c.hex : "#000000";
+          pick.setAttribute("aria-label", "Color " + (c.rol || ""));
+          const hx = document.createElement("input"); hx.className = "hex"; hx.value = c.hex || ""; hx.setAttribute("aria-label", "Hex de " + (c.rol || "color")); hx.spellcheck = false;
+          const fijar = (v) => {
+            v = v.trim(); if (!/^#[0-9a-fA-F]{6}$/.test(v)) { toast("Usa un hex de 6 dígitos, p. ej. #1A2E35"); hx.value = c.hex || ""; return; }
+            if (v.toUpperCase() === (c.hex || "").toUpperCase()) return;
+            const nuevos = colores.map((x, j) => (j === i ? Object.assign({}, x, { hex: v.toUpperCase() }) : x));
+            guardar("marca_visual", d.id, "colores", nuevos);
+          };
+          pick.addEventListener("change", () => { hx.value = pick.value.toUpperCase(); fijar(pick.value); });
+          hx.addEventListener("change", () => fijar(hx.value));
+          s.appendChild(pick); s.appendChild(hx);
+          s.appendChild(el("div", "rol", (c.rol || "") + (c.uso ? " · " + c.uso : "")));
+          g.appendChild(s);
+        });
+        f.appendChild(g);
+      });
+      const cols = el("div", "grid");
+      const a = el("div"); campo(a, "marca_visual", d, "fuentes", "Fuentes (una por renglón)", "", "Instrument Serif · titulares"); cols.appendChild(a);
+      const b = el("div"); campo(b, "marca_visual", d, "textos", "Textos clave y eslóganes", "", "Tu eslogan o la frase de tu página"); cols.appendChild(b);
+      f.appendChild(cols);
+      campo(f, "marca_visual", d, "nota", "Tu nota", "chico", "Algo que cambiarías de esta marca");
+      cont.appendChild(f);
+    });
+  }
+
+  // ── Ganchos ──
+  function pintarGanchos() {
+    const cont = $("#ganchos");
+    const cats = [...new Set(datos.ganchos.map((d) => d.categoria).filter(Boolean))];
+    const fa = vista.f.ganchos || "todo";
+    chips($("#f-ganchos"), [["todo", "Todos"]].concat(cats.map((c) => [c, c])), fa, (k) => { vista.f.ganchos = k; vista.lim.ganchos = TANDA; pintarGanchos(); });
+    const items = datos.ganchos.filter((d) => fa === "todo" || d.categoria === fa).filter(busca("ganchos", ["codigo", "categoria", "nombre", "molde", "ejemplo", "referencia", "nota"]));
+    $("#c-ganchos").textContent = items.length + (items.length === 1 ? " gancho" : " ganchos");
+    cont.innerHTML = "";
+    if (!items.length) { cont.innerHTML = '<div class="aviso">Nada en esta vista todavía.</div>'; return; }
+    tanda(cont, items, "ganchos", (d) => {
+      const f = el("article", "ficha");
+      const cab = el("div", "cab");
+      const izq = el("div"); izq.style.display = "flex"; izq.style.gap = "8px"; izq.style.alignItems = "baseline"; izq.style.flexWrap = "wrap";
+      izq.appendChild(el("span", "gcod", d.codigo || "")); if (d.categoria) izq.appendChild(el("span", "tag", d.categoria));
+      cab.appendChild(izq); cab.appendChild(insignia(d)); f.appendChild(cab);
+      if (d.nombre) f.appendChild(el("h3", "", d.nombre));
+      campo(f, "ganchos", d, "molde", "Molde");
+      campo(f, "ganchos", d, "ejemplo", "Ejemplo para ti");
+      campo(f, "ganchos", d, "referencia", "Referencia", "chico", "Cuenta o de dónde salió");
+      campo(f, "ganchos", d, "nota", "Tu nota", "chico", "¿Te funcionó? ¿Con qué pieza?");
+      return f;
+    }, pintarGanchos);
+  }
+
+  // ── Inspiración ──
+  function pintarInspiracion() {
+    const cont = $("#inspiracion");
+    const lotes = [...new Set(datos.inspiracion.filter(deMarca).map((d) => d.lote).filter(Boolean))];
+    const fa = vista.f.inspiracion || "todo";
+    chips($("#f-inspiracion"), [["todo", "Todo"]].concat(lotes.map((c) => [c, c])), fa, (k) => { vista.f.inspiracion = k; vista.lim.inspiracion = TANDA; pintarInspiracion(); });
+    const items = datos.inspiracion.filter(deMarca).filter((d) => fa === "todo" || d.lote === fa).filter(busca("inspiracion", ["cuenta", "titulo", "gancho", "formula", "por_que", "replicar", "nota", "carpeta"]));
+    $("#c-inspiracion").textContent = items.length + (items.length === 1 ? " referencia" : " referencias");
+    cont.innerHTML = "";
+    if (!items.length) { cont.innerHTML = '<div class="aviso">Nada en esta vista todavía. Pon videos en referencias/virales y corre el modo analizar.</div>'; return; }
+    tanda(cont, items, "inspiracion", (d) => {
+      const f = el("article", "el");
+      const media = el("div", "media" + (d.miniatura ? " ancha" : ""));
+      if (d.miniatura) { const i = el("img"); i.src = d.miniatura; i.alt = "Cuadros de referencia de " + (d.cuenta || "este video"); i.loading = "lazy"; i.decoding = "async"; media.appendChild(i); }
+      else media.appendChild(el("div", "vacio", "Sin miniatura"));
+      f.appendChild(media);
+      const body = el("div", "body");
+      const cab = el("div", "cab"); cab.appendChild(el("h4", "", d.cuenta || d.titulo || d.id)); cab.appendChild(insignia(d)); body.appendChild(cab);
+      const ce = etiquetaCompartido(d); if (ce) body.appendChild(ce);
+      if (d.formula) body.appendChild(el("p", "que", d.formula));
+      campo(body, "inspiracion", d, "gancho", "Gancho");
+      campo(body, "inspiracion", d, "por_que", "Por qué funciona");
+      campo(body, "inspiracion", d, "replicar", "Cómo lo replico");
+      campo(body, "inspiracion", d, "nota", "Tu nota", "chico", "¿Qué te llevas de este?");
+      if (d.carpeta) body.appendChild(el("div", "codigo", d.carpeta));
+      f.appendChild(body);
+      return f;
+    }, pintarInspiracion);
+  }
+
+  // ── Ideas ──
+  const ESTADOS_IDEA = [["nueva", "Nueva"], ["por pulir", "Por pulir"], ["aprobada", "Aprobada"], ["descartada", "Descartada"]];
+  function pintarIdeas() {
+    const cont = $("#ideas");
+    const fa = vista.f.ideas || "todo";
+    chips($("#f-ideas"), [["todo", "Todas"], ["parrilla", "Para la parrilla"], ["libreria", "Ideas por pulir (librería)"], ["descartada", "Descartadas"]], fa, (k) => { vista.f.ideas = k; vista.lim.ideas = TANDA; pintarIdeas(); });
+    let items = datos.ideas.filter(deMarca).filter((d) => (fa === "descartada" ? d.estado === "descartada" : d.estado !== "descartada" && (fa === "todo" || d.destino === fa)));
+    items = items.filter(busca("ideas", ["titulo", "detalle", "origen", "nota"]));
+    $("#c-ideas").textContent = items.length + (items.length === 1 ? " idea" : " ideas");
+    cont.innerHTML = "";
+    if (!items.length) { cont.innerHTML = '<div class="aviso">Nada en esta vista todavía.</div>'; return; }
+    tanda(cont, items, "ideas", (d) => {
+      const f = el("article", "ficha " + (d.estado === "aprobada" ? "s-probado" : d.estado === "descartada" ? "s-descartado" : "s-pulir"));
+      const cab = el("div", "cab"); const tg = el("div"); tg.style.display = "flex"; tg.style.gap = "6px"; tg.style.flexWrap = "wrap";
+      tg.appendChild(el("span", "tag", d.destino === "libreria" ? "Ideas por pulir" : "Parrilla")); const ce = etiquetaCompartido(d); if (ce) tg.appendChild(ce);
+      cab.appendChild(tg); cab.appendChild(insignia(d)); f.appendChild(cab);
+      f.appendChild(editable("ideas", d.id, "titulo", d.titulo, "grande", "Idea"));
+      campo(f, "ideas", d, "detalle", "Detalle");
+      if (d.origen) f.appendChild(el("div", "codigo", "De: " + d.origen));
+      const fila = el("div", "fila");
+      const sel = document.createElement("select"); sel.id = "estado-idea-" + d.id; sel.setAttribute("aria-label", "Estado de la idea");
+      ESTADOS_IDEA.forEach(([k, v]) => { const o = el("option", "", v); o.value = k; if ((d.estado || "nueva") === k) o.selected = true; sel.appendChild(o); });
+      sel.addEventListener("change", () => guardar("ideas", d.id, "estado", sel.value));
+      fila.appendChild(el("span", "ayuda", "Estado")); fila.appendChild(sel); f.appendChild(fila);
+      return f;
+    }, pintarIdeas);
+  }
+
+  // ── Aprendizajes ──
+  function pintarAprendizajes() {
+    const cont = $("#aprendizajes");
+    if (!datos.aprendizajes.length) { cont.innerHTML = '<div class="aviso">Sin aprendizajes todavía.</div>'; return; }
+    cont.innerHTML = "";
+    tanda(cont, datos.aprendizajes, "aprendizajes", (d) => {
+      const r = el("article", "ficha");
+      const cab = el("div", "cab"); cab.appendChild(el("span", "mono", d.fecha || "")); cab.appendChild(insignia(d)); r.appendChild(cab);
+      campo(r, "aprendizajes", d, "pieza", "Pieza");
+      campo(r, "aprendizajes", d, "probado", "Qué se probó");
+      campo(r, "aprendizajes", d, "resultado", "Resultado", "", "Número real o «sin métricas todavía»");
+      campo(r, "aprendizajes", d, "leccion", "Lección");
+      return r;
+    }, pintarAprendizajes);
+  }
+
+  // ── Cultura ──
+  function pintarCultura() {
+    const cont = $("#cultura");
+    if (!datos.cultura.length) { cont.innerHTML = '<div class="aviso">Sin principios todavía.</div>'; return; }
+    cont.innerHTML = "";
+    let tipo = null;
+    datos.cultura.forEach((d) => {
+      const t = d.tipo || "principio";
+      if (t !== tipo) { tipo = t; cont.appendChild(el("div", "mono sec-tit", t === "revision" ? "Revisión rápida antes de entregar" : t === "central" ? "La idea" : "Cómo se aplica")); }
+      const r = el("article", "ficha");
+      const cab = el("div", "cab"); cab.appendChild(el("span", "gcod", d.numero ? String(d.numero) : "")); cab.appendChild(insignia(d)); r.appendChild(cab);
+      if (t === "principio") r.appendChild(editable("cultura", d.id, "titulo", d.titulo, "", "Título del principio", "Título"));
+      r.appendChild(editable("cultura", d.id, "texto", d.texto, t === "central" ? "grande" : "", "Texto"));
+      cont.appendChild(r);
+    });
+  }
+
+  // ── Librería ──
+  const TIPOS_BASE = [["todo", "Todo"], ["reel", "Reels sin cara"], ["personal", "Reels con cara"], ["portada", "Portadas"], ["carrusel", "Carruseles"], ["stylelab", "Style Lab"], ["idea", "Ideas por pulir"], ["descartado", "Descartados"]];
+  // Los tipos que la persona use y no estén en la lista base salen como filtro con su propio nombre
+  const tiposLib = () => {
+    const conocidos = new Set(TIPOS_BASE.map(([k]) => k));
+    const extra = [...new Set(datos.libreria.map((d) => d.tipo).filter((t) => t && !conocidos.has(t)))].map((t) => [t, t]);
+    return [...TIPOS_BASE, ...extra];
+  };
+  function pintarFiltros() {
+    chips($("#filtros"), tiposLib(), vista.libFiltro, (k) => { vista.libFiltro = k; vista.limite = TANDA; pintarFiltros(); pintarLib(); });
+    chips($("#filtrosR"), [["regla", "Reglas"], ["rechazado", "Rechazados"]], vista.reglaFiltro, (k) => { vista.reglaFiltro = k; pintarFiltros(); pintarReglas(); });
+  }
+  // Los videos solo se bajan y reproducen cuando su tarjeta está en pantalla; al salir se pausan.
+  const visor = "IntersectionObserver" in window
+    ? new IntersectionObserver((entradas) => entradas.forEach((e) => {
+        const v = e.target;
+        if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; const p = v.play(); if (p) p.catch(() => {}); }
+        else if (!v.paused) v.pause();
+      }), { rootMargin: "200px 0px", threshold: 0.25 })
+    : null;
+  $("#buscar").addEventListener("input", (ev) => { vista.busca = ev.target.value.trim().toLowerCase(); vista.limite = TANDA; pintarLib(); });
+
+  function pintarLib() {
+    const cont = $("#lib");
+    let items = datos.libreria.filter(deMarca);
+    const f = vista.libFiltro;
+    if (f === "descartado") items = items.filter((d) => d.estado === "descartado");
+    else if (f !== "todo") items = items.filter((d) => d.tipo === f && d.estado !== "descartado");
+    else items = items.filter((d) => d.estado !== "descartado");
+    if (vista.busca) items = items.filter((d) => [d.nombre, d.que, d.frase, d.tambien, d.codigo, d.nota].join(" ").toLowerCase().includes(vista.busca));
+    $("#cuenta").textContent = items.length + (items.length === 1 ? " componente" : " componentes");
+    if (visor) cont.querySelectorAll("video").forEach((v) => visor.unobserve(v));
+    if (!items.length) { cont.innerHTML = '<div class="aviso">Nada en esta vista todavía.</div>'; return; }
+    cont.innerHTML = "";
+    const total = items.length;
+    items = items.slice(0, vista.limite);
+    items.forEach((d) => {
+      const art = el("article", "el " + (d.estado === "probado" ? "s-probado" : d.estado === "descartado" ? "s-descartado" : "s-pulir"));
+      const media = el("div", "media");
+      if (d.video) { const v = document.createElement("video"); v.dataset.src = d.video; v.muted = true; v.loop = true; v.playsInline = true; v.preload = "none"; media.appendChild(v); }
+      else if (d.imagen) { const i = el("img"); i.src = d.imagen; i.alt = d.nombre || ""; i.loading = "lazy"; media.appendChild(i); }
+      else media.appendChild(el("div", "vacio", d.tipo === "idea" ? "Idea sin construir todavía" : d.tipo === "carrusel" ? "Preview cuando hagamos el primer carrusel" : "Sin preview"));
+      art.appendChild(media);
+      const body = el("div", "body");
+      body.appendChild(el("h4", "", d.nombre));
+      const ce = etiquetaCompartido(d); if (ce) body.appendChild(ce);
+      if (d.que) body.appendChild(el("p", "que", d.que));
+      campo(body, "libreria", d, "frase", "Úsalo cuando dice…");
+      campo(body, "libreria", d, "nota", "Tu nota", "chico", "Tu nota sobre este elemento");
+      if (d.tambien) body.appendChild(el("div", "codigo", "También en: " + d.tambien));
+      const fila = el("div", "fila");
+      fila.appendChild(el("span", "codigo", d.codigo || ""));
+      const sel = document.createElement("select"); sel.id = "estado-" + d.id; sel.setAttribute("aria-label", "Estado de " + (d.nombre || ""));
+      [["probado", "Probado"], ["por pulir", "Por pulir"], ["descartado", "Descartado"]].forEach(([k, v]) => { const o = el("option", "", v); o.value = k; if (d.estado === k) o.selected = true; sel.appendChild(o); });
+      sel.addEventListener("change", () => guardar("libreria", d.id, "estado", sel.value));
+      fila.appendChild(sel); body.appendChild(fila); art.appendChild(body);
+      cont.appendChild(art);
+      const v = art.querySelector("video");
+      if (v) { if (visor) visor.observe(v); else { v.src = v.dataset.src; v.autoplay = true; } }
+    });
+    if (total > items.length) {
+      const mas = el("button", "btn mas", "Ver más (" + (total - items.length) + ")"); mas.type = "button"; mas.id = "ver-mas";
+      mas.addEventListener("click", () => { vista.limite += TANDA; pintarLib(); });
+      cont.appendChild(mas);
+    }
+  }
+
+  function pintarReglas() {
+    const cont = $("#reglas");
+    const items = datos.reglas.filter((d) => (d.tipo || "regla") === vista.reglaFiltro);
+    if (!items.length) { cont.innerHTML = '<div class="aviso">Nada aquí todavía.</div>'; return; }
+    cont.innerHTML = "";
+    items.forEach((d) => {
+      const r = el("div", "regla");
+      r.appendChild(editable("reglas", d.id, "texto", d.texto, "", "Regla"));
+      r.appendChild(insignia(d));
+      if (d.porque || d.origen) r.appendChild(el("div", "origen", [d.porque, d.origen].filter(Boolean).join(" · ")));
+      cont.appendChild(r);
+    });
+  }
+
+  const PINTAR = { perfil: pintarMarca, marca_visual: () => { pintarSelector(); aplicarTema(); pintarVisual(); pintarLib(); pintarInspiracion(); pintarIdeas(); }, ganchos: pintarGanchos, inspiracion: pintarInspiracion, ideas: pintarIdeas, aprendizajes: pintarAprendizajes, cultura: pintarCultura, libreria: () => { pintarFiltros(); pintarLib(); }, reglas: pintarReglas };
+  function suscribir(col) {
+    db.collection(col).orderBy("orden").onSnapshot(
+      (snap) => {
+        datos[col] = snap.docs.map((d) => Object.assign({ id: d.id }, d.data()));
+        // No repintar mientras alguien escribe en esta colección (para no perder el cursor)
+        const a = document.activeElement;
+        if (a && a.id && a.id.startsWith(col + "-") || a && a.closest && a.closest(".sw") && col === "marca_visual") { contarPendientes(); if (col === "marca_visual") aplicarTema(); return; }
+        PINTAR[col](); contarPendientes();
+        const visible = TABS.find((t) => !$("#p-" + t).hidden);
+        if (visible) medirPanel(visible);
+      },
+      () => toast("Se perdió la conexión; recarga la página"),
+    );
+  }
+
+  // ── Formularios ──
+  const siguiente = (col) => 9000 + datos[col].length;
+  $("#f-idea").addEventListener("submit", async (ev) => {
+    ev.preventDefault(); const nombre = $("#i-nombre").value.trim(); if (!nombre) return;
+    if (await agregar("libreria", { nombre, frase: $("#i-frase").value.trim(), nota: $("#i-nota").value.trim(), que: "", tipo: "idea", estado: "por pulir", codigo: "", video: "", marca: marcaActual() || "todas", orden: siguiente("libreria") })) ev.target.reset();
+  });
+  $("#f-regla").addEventListener("submit", async (ev) => {
+    ev.preventDefault(); const texto = $("#r-texto").value.trim(); if (!texto) return;
+    if (await agregar("reglas", { texto, tipo: vista.reglaFiltro, porque: "", origen: "Agregada en el panel", orden: siguiente("reglas") })) ev.target.reset();
+  });
+  $("#n-gancho").addEventListener("submit", async (ev) => {
+    ev.preventDefault(); const molde = $("#ng-molde").value.trim(); if (!molde) return;
+    const n = datos.ganchos.reduce((m, d) => Math.max(m, parseInt(String(d.codigo || "").replace(/\D/g, ""), 10) || 0), 0) + 1;
+    if (await agregar("ganchos", { codigo: "G" + n, categoria: $("#ng-cat").value.trim(), nombre: "", molde, ejemplo: $("#ng-ej").value.trim(), referencia: $("#ng-ref").value.trim(), nota: "", orden: siguiente("ganchos") })) ev.target.reset();
+  });
+  $("#n-idea").addEventListener("submit", async (ev) => {
+    ev.preventDefault(); const titulo = $("#ni-titulo").value.trim(); if (!titulo) return;
+    if (await agregar("ideas", { titulo, detalle: $("#ni-detalle").value.trim(), destino: $("#ni-destino").value, marca: marcaActual() || "todas", estado: "nueva", origen: "Agregada en el panel", orden: siguiente("ideas") })) ev.target.reset();
+  });
+  $("#n-apr").addEventListener("submit", async (ev) => {
+    ev.preventDefault(); const pieza = $("#na-pieza").value.trim(); if (!pieza) return;
+    if (await agregar("aprendizajes", { fecha: new Date().toISOString().slice(0, 10), pieza, probado: $("#na-probado").value.trim(), resultado: $("#na-resultado").value.trim() || "sin métricas todavía", leccion: $("#na-leccion").value.trim(), orden: siguiente("aprendizajes") })) ev.target.reset();
+  });
+  $("#n-cul").addEventListener("submit", async (ev) => {
+    ev.preventDefault(); const texto = $("#nc-texto").value.trim(); if (!texto) return;
+    const tipo = $("#nc-tipo").value;
+    if (await agregar("cultura", { tipo, titulo: $("#nc-titulo").value.trim(), texto, numero: "", orden: (tipo === "revision" ? 900 : 500) + datos.cultura.length })) ev.target.reset();
+  });
+  ["ganchos", "inspiracion", "ideas"].forEach((k) => enlazarBusca(k, { ganchos: pintarGanchos, inspiracion: pintarInspiracion, ideas: pintarIdeas }[k]));
+
+  pintarFiltros();
+  (async () => {
+    const c = window.claude;
+    db = c ? await c.use("db") : null;
+    if (!db) {
+      // Sin cuenta: si junto a la página está panel-ejemplo.json, se muestra como vista de ejemplo (solo lectura)
+      try {
+        const r = await fetch("panel-ejemplo.json");
+        if (r.ok) {
+          const ej = await r.json();
+          COLS.forEach((col) => (datos[col] = Object.entries(ej[col] || {}).map(([id, d]) => Object.assign({ id }, d)).sort((a, b) => (a.orden || 0) - (b.orden || 0))));
+          COLS.forEach((col) => PINTAR[col]()); pintarFiltros(); contarPendientes();
+          $("#pendT").textContent = "Vista de ejemplo con una marca ficticia: los cambios no se guardan.";
+          return;
+        }
+      } catch (e) {}
+      const m = '<div class="aviso">Abre esta página con tu cuenta de Claude para ver y editar tu Creator Lab.</div>';
+      ["#marca", "#visual", "#ganchos", "#inspiracion", "#ideas", "#aprendizajes", "#cultura", "#lib", "#reglas"].forEach((s) => ($(s).innerHTML = m));
+      return;
+    }
+    try { const u = await c.use("user"); userId = u ? await u.id() : null; } catch (e) {}
+    COLS.forEach(suscribir);
+  })();
+})();
+</script>

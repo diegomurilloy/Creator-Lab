@@ -1,0 +1,22 @@
+# Lo de cada persona: nunca se sube
+personal/
+
+# Python
+__pycache__/
+*.pyc
+
+# Kit de Remotion
+kit/node_modules/
+kit/out/
+kit/whisper.cpp/
+node_modules/
+
+# Sistema y temporales
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+*.log
+~$*
+.~lock.*
+*.swp
