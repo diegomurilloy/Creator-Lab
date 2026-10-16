@@ -65,23 +65,53 @@ flowchart LR
 
 ## Instalación
 
-1. Clona el repo donde quieras guardar tu sistema:
-   ```
-   git clone https://github.com/diegomurilloy/Creator-Lab.git creator-lab
-   cd creator-lab
-   pip install -r requirements.txt
-   python -m playwright install chromium
-   ```
-2. Enlázalo a tus skills de Claude Code:
-   - **Windows** (CMD, sin permisos de administrador):
-     ```
-     mklink /J "%USERPROFILE%\.claude\skills\creator-lab" "<ruta a creator-lab>"
-     ```
-   - **macOS / Linux:**
-     ```
-     ln -s "<ruta a creator-lab>" ~/.claude/skills/creator-lab
-     ```
-3. Abre una sesión nueva de Claude Code: aparece `/creator-lab`.
+### Opción 1: pídeselo a Claude Code (la más fácil)
+
+Abre Claude Code y escribe:
+
+```
+Instala la skill Creator Lab desde https://github.com/diegomurilloy/Creator-Lab en mi carpeta de skills
+(~/.claude/skills/creator-lab) e instala sus dependencias de Python.
+```
+
+Claude clona el repo, instala lo necesario y te avisa cuando esté. Abre una sesión nueva y escribe `/creator-lab`.
+
+### Opción 2: un comando en tu terminal
+
+Clona el repo directo en tu carpeta de skills de Claude Code:
+
+**macOS / Linux**
+```bash
+git clone https://github.com/diegomurilloy/Creator-Lab.git ~/.claude/skills/creator-lab
+pip install -r ~/.claude/skills/creator-lab/requirements.txt
+```
+
+**Windows (PowerShell)**
+```powershell
+git clone https://github.com/diegomurilloy/Creator-Lab.git "$env:USERPROFILE\.claude\skills\creator-lab"
+pip install -r "$env:USERPROFILE\.claude\skills\creator-lab\requirements.txt"
+```
+
+Abre una sesión nueva de Claude Code y escribe `/creator-lab`.
+
+> Para portadas y carruseles también corre una vez `python -m playwright install chromium`.
+
+### Opción 3: guardarlo en otra carpeta (OneDrive, Documentos…)
+
+Si prefieres tener tu sistema en otra carpeta, clónalo ahí y enlázalo a tus skills:
+
+```bash
+git clone https://github.com/diegomurilloy/Creator-Lab.git creator-lab
+```
+
+- **Windows** (CMD, sin permisos de administrador): `mklink /J "%USERPROFILE%\.claude\skills\creator-lab" "<ruta a creator-lab>"`
+- **macOS / Linux:** `ln -s "<ruta a creator-lab>" ~/.claude/skills/creator-lab`
+
+### ¿Sin git?
+
+En GitHub, botón verde **Code → Download ZIP**, descomprímelo como `creator-lab` dentro de `~/.claude/skills/`
+(en Windows, `%USERPROFILE%\.claude\skills\`). Así funciona igual, pero para actualizar tendrás que volver a
+descargarlo; con git es un solo comando.
 
 ## Primer uso
 
@@ -112,8 +142,11 @@ reglas; dile a Claude «sincroniza Creator Lab» para pasar tus cambios a `perso
 
 ## Actualizar
 
-```
-git pull
+Dile a Claude Code «actualiza Creator Lab», o en tu terminal:
+
+```bash
+git -C ~/.claude/skills/creator-lab pull                              # macOS / Linux
+git -C "$env:USERPROFILE\.claude\skills\creator-lab" pull             # Windows (PowerShell)
 ```
 
 El motor (modos, referencias, plantillas, scripts y kit) se actualiza; **`personal/` nunca se toca** porque git la

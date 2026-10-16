@@ -62,6 +62,13 @@ Los scripts leen la misma config con `scripts/config.py` o reciben la ruta por a
 **Separación por marca:** librería, marca visual, inspiración e ideas son de cada marca (campo `marca`: la clave de
 `marcas` en la config, o «todas»); ganchos, perfil, reglas, aprendizajes y cultura se comparten (`modos/panel.md`).
 
+## Actualizar Creator Lab («actualiza Creator Lab»)
+
+1. En la carpeta de la skill corre `git pull` (si no es un repo de git, explica que se instaló por ZIP y ofrece reinstalarla con `git clone` sin tocar su `personal/`).
+2. Resume en lenguaje simple qué trajo la actualización (`git log --oneline` del rango nuevo): modos, plantillas, kit o scripts.
+3. Si cambiaron `plantillas/`, compara con su `personal/` y ofrece agregar los campos nuevos (sin pisar nada). Si cambió `requirements.txt` o `kit/package.json`, ofrece reinstalar dependencias.
+4. `personal/` nunca se toca.
+
 ## Inspiración antes de crear
 
 Antes de escribir un guion o armar un video nuevo (reel, serie, lanzamiento), pregunta **una vez** si hay inspiración:
