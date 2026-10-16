@@ -65,16 +65,21 @@ flowchart LR
 
 ## Instalación
 
-### Opción 1: pídeselo a Claude Code (la más fácil)
+### Opción 1: pídeselo a Claude Code (la más fácil, aunque empieces de cero)
 
-Abre Claude Code y escribe:
+Abre Claude Code y pega esto tal cual:
 
 ```
-Instala la skill Creator Lab desde https://github.com/diegomurilloy/Creator-Lab en mi carpeta de skills
-(~/.claude/skills/creator-lab) e instala sus dependencias de Python.
+Instala Creator Lab desde cero en esta computadora:
+1. Revisa si tengo git, Python 3.10+, ffmpeg y Node.js 18+; instala solo lo que falte (dime antes qué vas a instalar).
+2. Clona https://github.com/diegomurilloy/Creator-Lab.git en ~/.claude/skills/creator-lab (si ya existe, haz git pull).
+3. Sigue INSTALAR.md de ese repo: dependencias de Python, Chromium de Playwright y npm install del kit.
+4. Corre python scripts/verificar_instalacion.py y arregla lo que salga en rojo.
+5. Dime cuando esté listo para escribir /creator-lab.
 ```
 
-Claude clona el repo, instala lo necesario y te avisa cuando esté. Abre una sesión nueva y escribe `/creator-lab`.
+Claude revisa tu computadora, instala lo que falte (te pregunta antes), verifica que todo funcione y te avisa.
+Abre una sesión nueva y escribe `/creator-lab`. El paso a paso completo está en **[INSTALAR.md](INSTALAR.md)**.
 
 ### Opción 2: un comando en tu terminal
 

@@ -20,3 +20,6 @@ desktop.ini
 ~$*
 .~lock.*
 *.swp
+
+# Entorno virtual de Python
+.venv/
