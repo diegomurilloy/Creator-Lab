@@ -235,7 +235,7 @@ con `REMOTION_MARCA=<id>`. Puedes trabajar ahí o copiarlo a tu carpeta de conte
 - **Fórmulas de gancho:** `referencias/ganchos.md` cita la cuenta donde se vio cada molde (vía Sandcastles y análisis
   propios); los ejemplos son propios.
 - **Style Lab:** el método de revisión por rondas es de Shaan Johari (@viashaan); su plantilla no viene en este repo.
-- Hecho por **Diego Murillo** (@diegomurilloy) con Claude Code.
+- Hecho por **[Diego Murillo](https://diegomurillo.com.mx)** (@diegomurilloy) con Claude Code.
 
 ## Licencia
 
