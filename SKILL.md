@@ -28,6 +28,13 @@ Reglas de lectura:
 
 ## El sistema aprende en dos capas
 
+**Quién puede tocar el motor:** solo quien mantiene Creator Lab (`mantenedor: si` en `personal/config.md`). Para
+cualquier otra persona, **las dos capas viven en su propio `personal/`**: la versión genérica va a
+`personal/motor-local/` (mismo nombre de archivo que en el motor, p. ej. `personal/motor-local/rechazados.md`) y se
+lee junto con el motor como cualquier archivo de `personal/`. Así nunca se edita, commitea ni sube nada al repo, `git
+pull` no choca con sus cambios y lo de cada quien se queda en su Creator Lab. Sin `mantenedor: si`, **nunca** edites
+`modos/`, `referencias/`, `plantillas/`, `scripts/` ni `kit/`, ni hagas `git commit` o `git push` en la carpeta de la skill.
+
 Todo lo que se aprende al hacer contenido (guiones, reels, edición, carruseles, portadas, lanzamientos, series,
 parrilla) se guarda **el mismo día, en dos capas**:
 

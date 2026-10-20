@@ -15,6 +15,8 @@ usuario:
 # Ejemplo: yo=Yo (personal), cafe=Café La Esquina
 marcas:
 marca_principal:
+# Déjalo en no: tus aprendizajes se guardan en personal/ (también los genéricos, en personal/motor-local/).
+mantenedor: no
 
 # Rutas (con / aunque estés en Windows)
 # Carpeta donde vive una carpeta por pieza («AAAA-MM-DD HHMM ID - Pieza»)
