@@ -18,11 +18,31 @@ raíz de `creator-lab/`) es la única fuente de verdad: si algo cambia, se cambi
 | **Lo de la persona** (git lo ignora) | `personal/` | su config, marca, paletas, parrilla, ganchos, librería, rechazados, aprendizajes, preferencias, reglas propias, marcas, virales | la persona (y tú, con su confirmación) |
 
 Reglas de lectura:
-1. **Lo de la persona sale de `personal/`; lo genérico, del repo.** Nunca escribas datos de la persona en el motor.
+1. **Lo de la persona sale de `personal/`; lo genérico, del repo.** Nunca escribas datos de la persona en el motor
+   (nombres, marcas, productos, cuentas, montos, rutas, ligas): al motor solo sube la versión genérica de un
+   aprendizaje (ver «El sistema aprende en dos capas»).
 2. **Si un archivo existe en los dos lados, léelos los dos** (`referencias/ganchos.md` + `personal/ganchos.md`,
    `referencias/libreria-motion.md` + `personal/libreria-motion.md`, `referencias/rechazados.md` + `personal/rechazados.md`,
    `referencias/estilo-*.md` + `personal/estilo-*.md` si existe). Si se contradicen, **manda `personal/`**.
 3. Antes de trabajar en cualquier modo, lee `personal/reglas.md` si existe: ahí están las reglas propias de la persona.
+
+## El sistema aprende en dos capas
+
+Todo lo que se aprende al hacer contenido (guiones, reels, edición, carruseles, portadas, lanzamientos, series,
+parrilla) se guarda **el mismo día, en dos capas**:
+
+| Capa | Dónde | Cómo se escribe |
+|---|---|---|
+| **La versión de la persona** | el archivo de `personal/` que toque: `preferencias-guion.md`, `rechazados.md`, `aprendizajes.md`, `libreria-motion.md`, `reglas.md`, `virales/<lote>/patron.md` | con sus nombres, sus marcas, sus piezas y sus ejemplos |
+| **La versión genérica** | el archivo del motor que toque: `referencias/rechazados.md`, `referencias/estilo-*.md`, `referencias/libreria-motion.md`, `referencias/voz-humana.md`, `referencias/series.md`, `modos/lanzamiento.md`, `modos/planear.md`, el modo del oficio | sin datos de nadie: ni nombres, ni marcas, ni cuentas, ni montos, ni rutas; los ejemplos van genéricos («tu producto», «una app de finanzas») |
+
+- La versión genérica se escribe **solo si le sirve a cualquier creador**. Si es un gusto de la persona («no me gusta
+  el ámbar»), se queda en `personal/`; si es oficio («el texto desenfocado en reposo no se lee»), sube al motor.
+- Avísale a la persona en una línea: «Lo guardé en tus rechazados y, en versión genérica, en `referencias/rechazados.md`».
+- Antes de dejar un cambio en el motor, búscale nombres propios, cuentas, montos, rutas y ligas (`git diff`): si
+  aparece uno, se generaliza o se queda en `personal/`.
+- **Revisión de motor al cerrar cada entrega:** pregúntate «¿qué de lo aprendido hoy le sirve a cualquiera?». Lo que
+  sí, se escribe en el motor en versión genérica antes de cerrar (y se avisa en una línea); si no hubo nada, no se dice.
 
 ## Rutas: `personal/config.md`
 
@@ -87,7 +107,7 @@ Lee el archivo del modo ANTES de trabajar. Si la persona no dice el modo, dedúc
 | `marca` | **onboarding**: primera vez, perfil incompleto, o afinar la marca con «Tú eres el nicho» | `modos/marca.md` |
 | `personalizar` | «cambia mi color de acento», «agrega mi marca X», «quita esta regla», «cambia mis pilares», «sube mi logo»… | `modos/personalizar.md` |
 | `panel` | crear la página editable de la persona, o «sincroniza Creator Lab» (pasar sus ediciones a `personal/`) | `modos/panel.md` |
-| `planear` | «planea P04», «reescribe los guiones», «crea las carpetas», cambios de fechas en la parrilla | `modos/planear.md` |
+| `planear` | «planea P04», «reescribe los guiones», «crea las carpetas», cambios de fechas en la parrilla, series, armar o reacomodar la semana | `modos/planear.md` |
 | `reel` | hay audio o toma grabada y hay que editar (con cara o sin cara) | `modos/reel.md` |
 | `portada` | portada de un reel | `modos/portada.md` |
 | `carrusel` | carruseles animados 1080×1350 (MP4 por lámina + PNG + PDF + preview) | `modos/carrusel.md` |
@@ -105,6 +125,7 @@ Lee el archivo del modo ANTES de trabajar. Si la persona no dice el modo, dedúc
 - `referencias/voz-humana.md`: cómo suena una persona y no una IA. **Siempre** antes de entregar un guion o un texto.
 - `referencias/conexion-cultural.md`: comerciales que no se sienten comerciales. **Siempre** en piezas de producto y lanzamientos.
 - `referencias/estructura-viral.md`: gancho, lead, cuerpos, loops y CTA, con tiempos.
+- `referencias/series.md`: series de episodios («Día N de M»): estructura, ritmo y reglas de la meta fija.
 - `referencias/ganchos.md` (+ `personal/ganchos.md`): fórmulas G# con el crédito de cada cuenta de referencia.
 - `referencias/estilo-con-cara.md`: reels talking head (corte, cámara, subtítulos, motion «pro», audio, portadas).
 - `referencias/estilo-sin-cara.md`: reels cinéticos solo voz (mundo continuo, bloques, loops, cierre).
@@ -133,9 +154,10 @@ Lee el archivo del modo ANTES de trabajar. Si la persona no dice el modo, dedúc
 9. **Escena antes que frase:** lo personal aterriza en un momento real; si una frase le queda a cualquiera, se reescribe.
 10. **Escritura en el Sheets y en `personal/`:** muestra primero lo que vas a escribir (antes → después) y escribe
     cuando la persona confirme. Respeta las celdas con fórmulas que diga `personal/parrilla.md`.
-11. **El sistema aprende:** cuando la persona aprueba o rechaza algo con una razón, guárdalo en el archivo de
-    `personal/` que toque (`libreria-motion.md`, `rechazados.md`, `reglas.md`, `preferencias-guion.md`,
-    `aprendizajes.md`) en la misma sesión, y avísale en una línea.
+11. **El sistema aprende, en dos capas:** cuando la persona aprueba o rechaza algo con una razón, guárdalo en la
+    misma sesión en el archivo de `personal/` que toque (`libreria-motion.md`, `rechazados.md`, `reglas.md`,
+    `preferencias-guion.md`, `aprendizajes.md`) y, si le sirve a cualquier creador, también en versión genérica en el
+    motor («El sistema aprende en dos capas»). Avísale en una línea dónde quedó.
 12. **Librería proactiva:** cualquier elemento nuevo que construyas o veas en una referencia y se pueda reusar,
     guárdalo sin que te lo pidan (código en `src/libreria/` de su kit y fila en `personal/libreria-motion.md`; si es
     solo idea, a «Ideas por pulir»). Avísale en una línea qué guardaste.
@@ -148,7 +170,8 @@ Lee el archivo del modo ANTES de trabajar. Si la persona no dice el modo, dedúc
     anuncio (`referencias/voz-humana.md`). Si la sesión tiene la skill `humanizalo`, puedes usarla como apoyo.
 16. **Los guiones aprenden:** cada corrección o preferencia de guion (tono, palabras que sí o no, largo, estilo de
     gancho, «esto no se entiende», «no digas X») se guarda en `personal/preferencias-guion.md` como regla con su
-    ejemplo, y se aplica en el siguiente guion.
+    ejemplo, y se aplica en el siguiente guion. Si la corrección es de oficio y no de gusto (p. ej. «suena a clase, no
+    a algo vivido»), sube también en versión genérica a `referencias/voz-humana.md` o al modo que toque.
 17. **Explica y enseña.** Creator Lab no solo hace: le enseña a la persona por qué. Explica el porqué en una línea y
     propone el siguiente paso, también durante el onboarding y al personalizar. Cada entrega de cualquier modo cierra
     con tres bloques cortos, en lenguaje simple:
@@ -158,9 +181,12 @@ Lee el archivo del modo ANTES de trabajar. Si la persona no dice el modo, dedúc
       «Qué medir» dice qué mirar, no predice números.
 18. **Bitácora de aprendizajes:** cuando la persona aprueba o rechaza algo con una razón, comparte métricas o un
     análisis deja una lección, agrega o completa una fila en `personal/aprendizajes.md` (fecha, pieza, qué se probó,
-    resultado real o «sin métricas todavía», lección). Avísale en una línea.
+    resultado real o «sin métricas todavía», lección). Avísale en una línea. Si la lección es de oficio, su versión
+    genérica (sin la pieza, sin montos y sin métricas de la persona) va al motor.
 19. **Todo se puede cambiar con lenguaje natural** en cualquier momento (`modos/personalizar.md`); si existe el panel,
     el cambio también se sube ahí.
+20. **Revisión de motor al cerrar:** cada entrega de cualquier modo termina preguntándose «¿qué de lo aprendido hoy le
+    sirve a cualquiera?» y sube eso al motor en versión genérica (sin datos de nadie), con aviso de una línea.
 
 ## Entregables por pieza
 

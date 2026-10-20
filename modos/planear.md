@@ -57,3 +57,30 @@ Cuando la persona mueve fechas en la parrilla o toma piezas nuevas:
    renombraría (cambió fecha u hora) y lo que crearía (piezas suyas sin carpeta, según `quien_hace`). Nunca borra.
 2. Muéstrale la lista.
 3. Si confirma, corre con `--aplicar`.
+
+## Series («Día N de M»)
+
+Cuando la persona quiere contar un proceso en episodios (construir algo, un reto, un rediseño), lee
+`referencias/series.md` y planea la serie completa antes del primer episodio:
+1. **Meta fija y M:** «Día N de 14 · …». M no cambia a media serie.
+2. **Una lección por episodio**, en orden: anota la lección, el antes/después y el adelanto de cada día.
+3. **Cadencia real:** si no sale diario, el adelanto dice «en el siguiente», nunca «mañana».
+4. Cada episodio es una fila con ID propio en la parrilla; la serie reemplaza a las bitácoras sueltas del mismo tema.
+5. Guion de cada episodio con la estructura de `referencias/series.md` (~45 s, voz en off sobre tomas trabajando).
+
+## Parrilla (armar y reacomodar la semana)
+
+- **Mezcla de pilares, intercalados:** un reparto que funciona es 4 piezas profesionales + 3 personales por semana,
+  sin poner dos del mismo tipo seguidas. El ancla aparece varias veces, sin dominar.
+- **Cadencia por formato:** si la persona tiene negocio, un carrusel diario para el negocio y un reel diario; lo
+  personal va en video a cámara.
+- **Una pestaña por marca, filtrada con fórmula** sobre la pestaña principal (p. ej.
+  `=SORT(FILTER(Parrilla!A2:Z; Parrilla!C2:C="<marca>"); 2; TRUE)`), así se edita en un solo lugar. Las pestañas
+  filtradas no se editan a mano.
+- **Estados además de «Publicado»:** «Por reprogramar» (no salió y vuelve a la fila) y «Descartado» (no va; se queda
+  como registro, no se borra).
+- **Cuando algo no se publicó, reacomoda sin recorrer todo:** la pieza que faltó toma el siguiente hueco libre o
+  reemplaza a una de su mismo pilar; no muevas toda la parrilla un día. Muestra el antes → después y escribe con
+  confirmación.
+- **Series en lugar de bitácoras:** si hay una serie activa, sus episodios ocupan los días de la bitácora o el diario
+  del mismo tema.

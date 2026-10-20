@@ -16,6 +16,20 @@ esto es el piso para todos.
 - **Lo que dice otra persona va entre comillas,** sin cambiar de voz ni de narrador.
 - **Concreto antes que abstracto:** un número, un lugar, una hora, un objeto.
 
+## Lo personal: contado, no narrado
+
+En lo personal (cómo vives, lo que te pasó, lo que aprendiste) no se narra ni se da clase: **se cuenta algo que ya
+viviste y lo compartes**, como en una plática.
+- Escena real en pasado y en primera persona: dónde estabas, qué pasó, qué sentiste.
+- El valor sale de lo que te pasó, no de un «tienes que…» ni de «tres consejos para…».
+- Si suena a documental o a tutorial («en este video te explico…», «primero, segundo…»), reescríbelo como se lo
+  contarías a un amigo.
+
+| Narrado o en tono de clase | Contado |
+|---|---|
+| «Hoy te voy a explicar por qué es importante descansar.» | «El martes me salí del gym a la mitad. Y no me sentí culpable.» |
+| «El primer paso para prototipar una app es…» | «Me tardé tres semanas en algo que salía en una tarde. Esto fue lo que hice mal.» |
+
 ## Lo que suena a IA o a anuncio (quítalo)
 
 - Verbos de folleto: «descubre», «revoluciona», «potencia», «transforma tu vida», «lleva tu X al siguiente nivel».
