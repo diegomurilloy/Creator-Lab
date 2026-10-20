@@ -158,6 +158,7 @@ y luego se usa). No se agregan repetidos.
 - **Ojo:** `alimiter` de ffmpeg trae `level=true` (reajuste automático de nivel). En la mezcla final usar
   `alimiter=limit=0.84:level=false` o te sube el volumen después de normalizar.
 - Efectos: `efectos.json` del reel (lista `{archivo, en, volumen}`), volúmenes 0.05–0.2. Catálogo: `referencias/sound-library.json`.
+- **Muchos efectos (≳ 200):** en Windows la línea de comando puede quedar demasiado larga (`WinError 206`). Junta antes los efectos en una sola pista (premezcla con ffmpeg `amix`) y pásale esa pista como un solo efecto.
 
 ## Cambiar palabras de lugar en la voz («nadie casi» → «casi nadie»)
 
@@ -172,6 +173,22 @@ La columna «De dónde» da el crédito a la cuenta donde se vio el recurso. Se 
 
 | Idea | De dónde | Úsala cuando… | Notas para construirla |
 |---|---|---|---|
+| **Oro líquido (metaballs)** | lanzamiento de una app (2026-10) | «todo se junta», elementos que se funden en el logo | gotas con orilla nítida + brillo especular; deterministas por cuadro |
+| **Fondo topográfico** | mismo | textura premium que respira con el beat | curvas de nivel muy tenues que se deforman con el pulso |
+| **Partículas en campo de flujo** | mismo | ambiente vivo; «todo se va hacia…» | integración paso a paso determinista; un atractor las arremolina |
+| **Foil holográfico** en el color de la marca | lista «20 animation styles» | CTA, logo, sensación premium | degradado de 3 tonos que se desliza en el tiempo |
+| **Vidrio esmerilado (glassmorphism)** | referencias de producto | notificaciones y avisos sobre UI | blur del fondo + borde claro + brillo interior; el texto siempre nítido |
+| **Chat con layout animation** | lanzamiento de una app | hilos de chat largos | resorte críticamente amortiguado: la burbuja crece desde abajo y el hilo sube a la vez; las de arriba se desvanecen enteras; revisión numérica de choques |
+| **Logo reveal por partes** | lanzamiento de una app | lanzamientos y cierres | moneda/disco → aro que se dibuja → partículas arman las piezas por octavo de pulso → wordmark letra por letra → viaja a su lugar dibujado POR DELANTE |
+| **Frase cinética con pastilla** | prod12/prod13 (videos de producto) | ganchos de texto sin cara | se teclea con cursor; la palabra clave entra en cápsula de color con resorte; un contador puede rodar adentro |
+| **Palabra gigante que se enfoca («Meet» / «Conoce»)** | mismos | revelación de marca | escala 1.35→1 + blur→0 en la entrada (nítida en reposo), se encoge y se vuelve el logo |
+| **Frase al lado de la UI** | mismos | explicar una función | renglón con la palabra clave en pastilla + el celular grande al lado, sin zoom ni líneas guía |
+| **Cambio de app estilo iOS** | lanzamiento de una app | «y ya quedó» → aparece en la app | las dos pantallas se encogen ~10 %, se redondean y se cruzan; lo dispara un elemento de la escena anterior |
+| **Rueda de valores** | mismo | cambiar de moneda o unidad | el valor viejo sube y el nuevo entra desde abajo con resorte; formatea con `Intl`; rótulo grande con código y nombre ≥ 0.6 s |
+| **Galaxia de tarjetas por pasos → fragmentos → logo** | mismo | recap de funciones | órbita 3D que gira → se detiene ≥ 0.85 s con una tarjeta al frente → gira; al final explotan en esquirlas que se ensamblan en el logo en el golpe |
+| **Notificaciones en cascada** | mismo | «se me fue sin darme cuenta» | cada nueva entra arriba y empuja; todas visibles completas; las de abajo se salen por la pantalla del celular |
+| **Mundo oscuro → mundo claro** | mismo | problema → solución | círculo del color claro que crece desde el centro con `clipPath` en el cambio de acto |
+| **Morph líquido entre escenas** | lista «20 animation styles» | transiciones de capítulo | gotas que cubren el cuadro, cambio de escena debajo, gotas que se retiran; nunca tapar texto en reposo |
 | **Diagrama tipo pizarra que se arma rama por rama** sobre un talking head | video «You are the niche» (@jun_yuh) | explicas un framework o «A se divide en B y C» | fondo blanco, nodos pastel por rama, cajas amarillas; cada rama entra en su palabra; la cámara del diagrama va a la rama activa |
 | **Círculo rojo a mano** sobre la parte de la que se habla | mismo | señalar «este» | trazo irregular con `strokeDashoffset` en ~0.3 s |
 | **Tachas rojas (X)** sobre lo que «no» es | mismo | descartar opciones | dos trazos rápidos escalonados 80 ms, con golpe suave |
