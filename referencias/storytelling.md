@@ -48,3 +48,10 @@ una página. Reglas:
 - Una palabra clave corta y única por recurso.
 - En la parrilla: columna de notas o CTA con el recurso y su palabra.
 - Se arma en el modo `carrusel` (PDF) o como página, con la marca de la persona.
+
+## Revisión obligatoria y aprender de cada cambio
+- **Todo guion se entrega como borrador y se pide revisión** antes de grabar o renderizar: «Revísalo y cámbiale lo que no suene a ti». Nunca se da por aprobado solo.
+- **Si la persona edita el guion** (en el chat o en el `guion.md`), compara su versión contra la tuya y anota qué cambió y por qué crees que lo cambió: tono, palabras que agrega o quita, largo de frase, cómo cuenta, cómo cierra.
+- Cada patrón se guarda **el mismo día** en `personal/preferencias-guion.md` como regla con su ejemplo (antes → después). Si le sirve a cualquier creador y la persona mantiene la skill, va también en versión genérica al motor.
+- **Si tú cambias algo de estilo** (narración, cierre, estructura) y la persona lo aprueba, también se guarda como preferencia.
+- El siguiente guion aplica esas reglas desde el primer borrador. Avísale en una línea qué aprendiste («Guardé: cierras con una pregunta y no con “sígueme”»).

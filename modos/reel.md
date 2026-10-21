@@ -84,3 +84,6 @@ Escribe una **tabla frase → qué se ve → efecto de sonido** con los tiempos 
 4. Manda el `final vN.mp4` a la persona (SendUserFile si está en el celular) y resume qué cambió en una lista corta.
 5. Cuando pida cambios, haz `vN+1`. **Nunca sobreescribas.**
 6. Guarda en la librería y en rechazados lo que aprendiste de su feedback (modo `libreria`).
+
+## Ganchos al editar
+Cuando la persona te pasa su video grabado, antes del render propón **3 opciones de texto de gancho** (0–1.5 s en pantalla) de tipos distintos, alineadas con lo que dice en el primer segundo, y deja que elija. Lo mismo para la portada si aplica.
