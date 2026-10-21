@@ -131,6 +131,7 @@ Lee el archivo del modo ANTES de trabajar. Si la persona no dice el modo, dedúc
 - `referencias/framework-nicho.md`: el fondo del contenido personal (qué / a quién / por qué + ancla).
 - `referencias/voz-humana.md`: cómo suena una persona y no una IA. **Siempre** antes de entregar un guion o un texto.
 - `referencias/conexion-cultural.md`: comerciales que no se sienten comerciales. **Siempre** en piezas de producto y lanzamientos.
+- `referencias/storytelling.md`: guionista y copywriter: pulir el borrador de la persona, que siempre enseñe algo, cierres y recursos descargables. **Siempre** antes de escribir o mejorar un guion.
 - `referencias/estructura-viral.md`: gancho, lead, cuerpos, loops y CTA, con tiempos.
 - `referencias/series.md`: series de episodios («Día N de M»): estructura, ritmo y reglas de la meta fija.
 - `referencias/ganchos.md` (+ `personal/ganchos.md`): fórmulas G# con el crédito de cada cuenta de referencia.
