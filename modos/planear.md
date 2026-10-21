@@ -23,12 +23,13 @@ actualizado. Lee `personal/parrilla.md` (o `plantillas/parrilla.md`), `referenci
    semana ya trae el ancla 3 veces, prefiere un pilar o una historia.
 4. **Inspiración:** si es pieza nueva o el primer capítulo de una serie, pregunta si hay videos de referencia (ruta de
    carpeta o descripción) y, si los hay, analízalos con `modos/analizar.md` antes de escribir.
-5. **Guion viral:** reescribe a Gancho → Lead → C1 → Loop 1 → C2 → Loop 2 → C3 → CTA, conservando la idea, la serie y
+5. **Gancho:** elige la fórmula G# por tipo (opinión, historia, llamado directo, curiosidad, conversacional…) en `referencias/ganchos.md` + `personal/ganchos.md` y anótala en la parrilla. Prefiere las que la persona marcó como foco.
+5b. **Guion viral:** reescribe a Gancho → Lead → C1 → Loop 1 → C2 → Loop 2 → C3 → CTA, conservando la idea, la serie y
    el tema de la semana. Frases para decirse, cortas y en el registro de la persona. Nada de datos inventados.
    Aplica cada regla de `personal/preferencias-guion.md`.
 6. **Prueba en voz alta:** lee el guion como si lo dijeras (`referencias/voz-humana.md`) y reescribe lo que suene a IA
    o a anuncio antes de mostrarlo.
-7. **Lo que se ve:** una metáfora visual por bloque, del catálogo de `referencias/libreria-motion.md` y
+7. **Lo que se ve:** el recurso de retención de cada bloque (`referencias/estructura-viral.md`, «Recursos para retener»: uno cada 3–5 s) y una metáfora visual por bloque, del catálogo de `referencias/libreria-motion.md` y
    `personal/libreria-motion.md`. Marca qué elementos faltan en la librería.
 8. **`guion.md`** en la carpeta de la pieza:
    - encabezado (cuenta, con o sin cara, fecha y hora, duración meta);

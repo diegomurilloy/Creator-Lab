@@ -86,3 +86,32 @@ contadores no son métricas tuyas. Se copia el molde, nunca el texto.
 | G46 | Capas que se apagan | El mismo clip corto repetido; en cada vuelta quitas una capa (subtítulos, zoom, música) hasta dejarlo crudo. | «Mi gancho editado… y lo que queda si le quito cada capa.» | @christianarciga_ve |
 | G47 | Gesto que todos hicieron | Abres con un gesto universal (dar clic en «comprar», decir «ahorita lo hago») y lo vuelves ráfaga. | «Todos hemos dicho “ahorita lo anoto”.» → ráfaga de tickets que nunca se anotaron. | @mosycreate × @higgsfield.creators |
 | G48 | Día N de M | Serie con contador de días construyendo algo; cada episodio cierra con «parte siguiente». | «Día 3 de 10 aprendiendo a hacer pan: hoy por fin subió.» | @ceciliakimdesign |
+
+## Más fórmulas por tipo (listas de ganchos vistas en Instagram, 2026-10)
+
+Créditos: @katrinalebar, @alanvillagrann y listas sin cuenta visible. Se adaptaron al español; se copia el molde, no la frase.
+
+| Código | Tipo | Fórmula | Cómo funciona |
+|---|---|---|---|
+| G49 | Opinión | «Lo voy a decir…» / «Sé que no todos van a estar de acuerdo, pero…» | Postura clara en la primera frase; la gente se queda a ver si tienes razón. |
+| G50 | Opinión | «Aquí es donde casi todos se equivocan con ___» | Señalas el punto exacto del error, no el tema completo. |
+| G51 | Historia | «Lo aprendí por las malas…» / «El otro día me pasó algo…» | Abres con la escena vivida; la lección llega después. |
+| G52 | Historia | «Ojalá alguien me hubiera dicho esto antes de ___» | Tú más joven como avatar; promete atajo. |
+| G53 | Llamado directo | «Si sigues haciendo ___, tenemos que hablar» | Nombra el hábito exacto de tu avatar. |
+| G54 | Llamado directo | «Si te está costando ___, escúchame un segundo» | Empatía + promesa corta. |
+| G55 | Curiosidad | «Por fin entendí por qué ___» | Brecha de curiosidad con una pregunta que todos se hicieron. |
+| G56 | Curiosidad | «Hay una razón por la que ___ sigue pasando» | El problema recurrente tiene una causa que tú viste. |
+| G57 | Conversacional | «Espérate, porque tengo opiniones» | Tono de plática, como si te detuvieras a la mitad de algo. |
+| G58 | Directo | «Deja de ___» | Orden + error común. |
+| G59 | Contraste | «No necesitas ___» | Rompe la objeción que frena a tu avatar. |
+| G60 | Resultado | «Esto me ahorró ___» | Beneficio medible (solo si el dato es real). |
+| G61 | Advertencia | «Mira esto antes de ___» | Antes de una decisión que tu avatar está por tomar. |
+| G62 | Prueba social al revés | «Todos me dijeron que esto no iba a funcionar… hasta que funcionó» | Duda ajena + giro. |
+| G63 | Error propio | «Cometí este error durante meses. No hagas lo mismo.» | Vulnerable + útil. |
+| G64 | Casi renuncio | «Por qué casi renuncié a ___ (y no lo hice)» | Tensión de historia con final abierto. |
+| G65 | Nadie me dijo | «Nadie me dijo que ___ iba a ser tan difícil» | Honestidad que conecta con quien va empezando. |
+| G66 | Probé N formas | «Probé 3 formas de ___. Esta fue la que funcionó.» | Experimento propio con ganador (formas reales). |
+| G67 | Hack flojo | «La forma floja en la que ___ (pero funciona)» | Simplicidad como valor; alto en guardados. |
+| G68 | Si siempre se te olvida | «Si siempre se te olvida ___, prueba esto» | Dolor cotidiano + solución corta. |
+| G69 | Si mañana despertara… | «Si mañana despertara [situación] y quisiera [resultado] en [tiempo], esto haría» | Plan concreto desde cero; autoridad sin presumir. |
+| G70 | Hábito silencioso | «Hay un hábito que está destruyendo en silencio tu ___» | Amenaza invisible que el espectador quiere identificar. |
