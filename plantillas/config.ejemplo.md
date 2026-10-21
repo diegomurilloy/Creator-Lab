@@ -17,6 +17,10 @@ marcas:
 marca_principal:
 # Déjalo en no: tus aprendizajes se guardan en personal/ (también los genéricos, en personal/motor-local/).
 mantenedor: no
+# Se llenan solas: fecha de tu última actualización, tu página de novedades y (opcional) tu índice de artifacts
+ultima_actualizacion:
+novedades_url:
+indice_artifacts_url:
 
 # Rutas (con / aunque estés en Windows)
 # Carpeta donde vive una carpeta por pieza («AAAA-MM-DD HHMM ID - Pieza»)

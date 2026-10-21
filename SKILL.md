@@ -89,12 +89,29 @@ Los scripts leen la misma config con `scripts/config.py` o reciben la ruta por a
 **Separación por marca:** librería, marca visual, inspiración e ideas son de cada marca (campo `marca`: la clave de
 `marcas` en la config, o «todas»); ganchos, perfil, reglas, aprendizajes y cultura se comparten (`modos/panel.md`).
 
-## Actualizar Creator Lab («actualiza Creator Lab»)
+## Actualizar Creator Lab (sola, al abrir, o con «actualiza Creator Lab»)
 
-1. En la carpeta de la skill corre `git pull` (si no es un repo de git, explica que se instaló por ZIP y ofrece reinstalarla con `git clone` sin tocar su `personal/`).
-2. Resume en lenguaje simple qué trajo la actualización (`git log --oneline` del rango nuevo): modos, plantillas, kit o scripts.
-3. Si cambiaron `plantillas/`, compara con su `personal/` y ofrece agregar los campos nuevos (sin pisar nada). Si cambió `requirements.txt` o `kit/package.json`, ofrece reinstalar dependencias.
-4. `personal/` nunca se toca.
+**Al abrir la skill** (una vez por sesión), revisa en silencio si hay versión nueva: `git fetch` en la carpeta de la
+skill y compara con `origin/main`. Si hay commits nuevos:
+1. Si el motor no tiene cambios locales (`git status` limpio fuera de `personal/`), actualiza sola con `git pull --ff-only`
+   y dilo en una línea. Si hay cambios locales en el motor o el pull no es directo, pregunta antes y no pises nada.
+2. **Página de novedades:** corre `python scripts/novedades.py <scratchpad>/novedades.html --desde <ultima_actualizacion>`
+   (la fecha sale de `personal/config.md`; si no existe, sin `--desde`) y publícala como artifact. Si la config ya
+   trae `novedades_url`, actualiza ese mismo artifact (pasa su `url`); si no, crea uno y guarda su liga en
+   `novedades_url`. Dale a la persona la liga y un resumen de 2–3 líneas de lo más útil para ella.
+3. Guarda en `personal/config.md` `ultima_actualizacion: <fecha de la entrada más nueva de NOVEDADES.md>`.
+4. Si cambiaron `plantillas/`, compara con su `personal/` y ofrece agregar los campos nuevos (sin pisar nada). Si cambió
+   `requirements.txt` o `kit/package.json`, ofrece reinstalar dependencias.
+5. `personal/` nunca se toca. Si no es un repo de git (se instaló por ZIP), explícalo y ofrece reinstalar con `git clone`.
+
+**Quien mantiene la skill** (`mantenedor: si`): cada cambio que se sube al repo lleva su entrada en `NOVEDADES.md`
+(fecha · título y viñetas en lenguaje simple: qué es nuevo y para qué le sirve a la persona), en el mismo commit.
+
+## Tus artifacts de Creator Lab
+
+Cada artifact que crea la skill (panel, Style Lab, guías, docs de guiones, novedades, vistas previas) se anota en
+`personal/artifacts.md` (título · liga · para qué es · fecha). Si la persona tiene un índice propio de artifacts
+(`indice_artifacts_url` en la config), regístralo también ahí, en su sección «Creator Lab». Así nunca se pierden.
 
 ## Inspiración antes de crear
 

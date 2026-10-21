@@ -86,3 +86,14 @@ Cuando la persona quiere contar un proceso en episodios (construir algo, un reto
   confirmación.
 - **Series en lugar de bitácoras:** si hay una serie activa, sus episodios ocupan los días de la bitácora o el diario
   del mismo tema.
+
+## Revisión en un doc editable (varios guiones)
+
+Cuando escribas más de 3 guiones juntos (una semana, una serie), entrégalos en un **documento de Claude Docs** si la
+sesión tiene ese conector: una pestaña por marca, una tabla índice con columna Estado (dropdown «Por revisar»,
+«Aprobado», «Cambios»), una sección por pieza con sus 3 ganchos, la tabla de bloques, la enseñanza, el cierre y los
+`[DATO]` como casillas. Pídele a la persona que edite o comente ahí y que diga «ya revisé».
+Al recibirlo: lee el doc, compara cada guion contra el `guion.md` de su carpeta, pasa los cambios al archivo (nueva
+versión si ya estaba aprobado), y guarda cada patrón de estilo en `personal/preferencias-guion.md`
+(`referencias/storytelling.md`, «Revisión obligatoria»). Registra el doc en `personal/artifacts.md`.
+Sin conector: un solo `.md` de revisión en la carpeta de recursos con todo junto.
