@@ -23,7 +23,7 @@ actualizado. Lee `personal/parrilla.md` (o `plantillas/parrilla.md`), `referenci
    semana ya trae el ancla 3 veces, prefiere un pilar o una historia.
 4. **Inspiración:** si es pieza nueva o el primer capítulo de una serie, pregunta si hay videos de referencia (ruta de
    carpeta o descripción) y, si los hay, analízalos con `modos/analizar.md` antes de escribir.
-5. **Gancho:** elige la fórmula G# por tipo (opinión, historia, llamado directo, curiosidad, conversacional…) en `referencias/ganchos.md` + `personal/ganchos.md` y anótala en la parrilla. Prefiere las que la persona marcó como foco.
+5. **Gancho:** elige la fórmula G# por tipo (opinión, historia, llamado directo, curiosidad, conversacional…) en `referencias/ganchos.md` + `personal/ganchos.md` y anótala en la parrilla. Prefiere las que la persona marcó como foco. Propón siempre **3 opciones de gancho** de tipos distintos (cada una con su código) y deja que la persona elija.
 5b. **Guion viral:** reescribe a Gancho → Lead → C1 → Loop 1 → C2 → Loop 2 → C3 → CTA, conservando la idea, la serie y
    el tema de la semana. Frases para decirse, cortas y en el registro de la persona. Nada de datos inventados.
    Aplica cada regla de `personal/preferencias-guion.md`.
