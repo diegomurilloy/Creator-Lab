@@ -36,3 +36,7 @@ público: una app, un rediseño, un hábito, un negocio. Se planea con `modos/pl
   de la cuenta.
 - En la parrilla, la serie ocupa sus días como piezas con ID propio y reemplaza a las bitácoras o diarios sueltos del
   mismo tema (`modos/planear.md` → «Parrilla»).
+
+## Antes y después: verifica los dos lados
+
+Antes de escribir que algo «estaba mal», revisa la pantalla del después. Si el después también lo hace, no es un problema y no se cuenta. Cuenta solo lo que cambió de verdad y se puede ver en pantalla.

@@ -17,3 +17,4 @@ una página con lo que llegó desde tu última actualización.
 - **Parrilla.** Mezcla de pilares (4 profesionales + 3 personales), pestañas por marca y estados «Por reprogramar» y «Descartado».
 - **Tus aprendizajes son tuyos.** Todo lo que la skill aprende de ti se guarda en tu `personal/`; nunca se sube al repo.
 - **Novedades.** Al actualizar, esta página te dice qué hay de nuevo.
+- **Series antes/después.** Antes de decir que algo estaba mal, la skill revisa también la pantalla del después.
