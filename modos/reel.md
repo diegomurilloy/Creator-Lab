@@ -34,6 +34,9 @@ de corte y mezcla con `scripts/mezcla.py`. Reporta los números (LUFS, pico, var
 
 ## 3. Diseña antes de animar
 
+**Primero elige el nivel de edición** (`referencias/edicion-pro.md`): básico, pro (capas, requiere `scripts/matte.py`)
+o documental. Propónlo en una línea con su porqué y respeta lo que la persona elija; un lenguaje visual por pieza.
+
 Escribe una **tabla frase → qué se ve → efecto de sonido** con los tiempos reales:
 - **Con cara:**
   - gancho visual en el cuadro 0 con el texto del gancho (0–1.5 s, tercio superior);

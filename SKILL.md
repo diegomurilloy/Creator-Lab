@@ -156,6 +156,7 @@ Lee el archivo del modo ANTES de trabajar. Si la persona no dice el modo, dedúc
 - `referencias/estilo-sin-cara.md`: reels cinéticos solo voz (mundo continuo, bloques, loops, cierre).
 - `referencias/libreria-motion.md` (+ `personal/libreria-motion.md`): reglas de edición y catálogo del kit.
 - `referencias/audio.md`: voz, efectos, música y mezcla.
+- `referencias/edicion-pro.md`: niveles de edición (básico, pro con capas, documental), catálogo de efectos y cuándo usarlos. **Siempre** al diseñar un reel.
 - `personal/parrilla.md` (si no existe, `plantillas/parrilla.md`): pestañas, columnas y reglas de escritura del Sheets.
 - `referencias/rechazados.md` + `personal/rechazados.md`: lo que ya se descartó y por qué. No volver a proponerlo.
 - `personal/aprendizajes.md`: bitácora de lo que ya se aprendió (pruebas, resultados reales y lecciones).
